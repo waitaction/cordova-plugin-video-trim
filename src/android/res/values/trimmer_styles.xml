@@ -1,11 +1,5 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
     <style name="Video_Trim_SeekBar" parent="@android:style/Widget.SeekBar">
         <item name="android:maxHeight">20.0dip</item>
         <item name="android:indeterminateOnly">false</item>
