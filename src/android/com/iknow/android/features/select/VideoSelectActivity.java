@@ -1,6 +1,7 @@
 package com.iknow.android.features.select;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,7 @@ public class VideoSelectActivity extends AppCompatActivity implements View.OnCli
   private VideoSelectAdapter mVideoSelectAdapter;
   private String mVideoPath;
 
+  @SuppressLint("CheckResult")
   @Override protected void onCreate(Bundle bundle) {
     super.onCreate(bundle);
     mBinding = DataBindingUtil.setContentView(this, R.layout.video_select_layout);
