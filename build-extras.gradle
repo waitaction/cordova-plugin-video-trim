@@ -5,6 +5,7 @@ buildscript {
     }
 }
 
+apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.android.application'
 
 android {
