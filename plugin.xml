@@ -7,48 +7,69 @@
     <author>350561378@qq.com</author>
     <license>Apache License Version 2.0</license>
     <keywords>cordova,video,video trimmer</keywords>
-    <preference name="APPID" />
-    <preference name="PACKAGENAME" />
-    <dependency id="cordova-plugin-device" />
-    <js-module name="CordovaHuaweiHMS" src="www/cordova-plugin-video-trimmer.js">
+
+    <js-module name="CordovaTrimmer" src="www/cordova-plugin-video-trimmer.js">
         <clobbers target="cordova.plugins.video.trimmer" />
     </js-module>
     <platform name="android">
-        <config-file parent="/*" target="res/xml/config.xml">
-            <feature name="CordovaHuaweiHMS">
-                <param name="android-package" value="com.waitaction.huaweipush.CordovaHuaweiHMS" />
-            </feature>
-        </config-file>
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
-            <meta-data android:name="hwc-theme" android:value="androidhwext:style/Theme.Emui.NoActionBar" />
-            <meta-data android:name="com.huawei.hms.client.appid" android:value="appid=$APPID"></meta-data>
-            <provider android:name="com.huawei.hms.update.provider.UpdateProvider" android:authorities="$PACKAGENAME.hms.update.provider" android:exported="false" android:grantUriPermissions="true"></provider>
-            <receiver android:name="com.waitaction.huaweipush.HuaweiPushReceiver">
+            <activity android:name="com.iknow.android.features.select.VideoSelectActivity">
                 <intent-filter>
-                    <action android:name="com.huawei.android.push.intent.REGISTRATION" />
-                    <action android:name="com.huawei.android.push.intent.RECEIVE" />
-                    <action android:name="com.huawei.android.push.intent.CLICK" />
-                    <action android:name="com.huawei.intent.action.PUSH_STATE" />
+                    <action android:name="android.intent.action.MAIN" />
+                    <category android:name="android.intent.category.LAUNCHER" />
                 </intent-filter>
-                <meta-data android:name="CS_cloud_ablitity" android:value="successRateAnalytics"></meta-data>
-            </receiver>
-            <receiver android:name="com.huawei.hms.support.api.push.PushEventReceiver">
-                <intent-filter>
-                    <action android:name="com.huawei.intent.action.PUSH" />
-                </intent-filter>
-            </receiver>
+            </activity>
+
+            <activity android:name="com.iknow.android.features.trim.VideoTrimmerActivity"/>
         </config-file>
+
         <config-file parent="/manifest" target="AndroidManifest.xml">
-            <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-            <uses-permission android:name="android.permission.WAKE_LOCK" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         </config-file>
-        <source-file src="src/android/lib/HMS_SDK_2.6.1.301.jar" target-dir="libs"/>
-        <source-file src="src/android/CordovaHuaweiHMS.java" target-dir="src/com/waitaction/huaweipush/" />
-        <source-file src="src/android/HuaweiPushReceiver.java" target-dir="src/com/waitaction/huaweipush/" />
- 
+
+
+        <source-file src="src/android/com/iknow/android/features/select/VideoSelectActivity.java" target-dir="src/com/iknow/android/features/select/" />
+        <source-file src="src/android/com/iknow/android/features/select/VideoSelectAdapter.java" target-dir="src/com/iknow/android/features/select/" />
+        <source-file src="src/android/com/iknow/android/interfaces/CompressVideoListener.java" target-dir="src/com/iknow/android/interfaces/" />
+        <source-file src="src/android/com/iknow/android/interfaces/IVideoTrimmerView.java" target-dir="src/com/iknow/android/interfaces/" />
+        <source-file src="src/android/com/iknow/android/interfaces/TrimVideoListener.java" target-dir="src/com/iknow/android/interfaces/" />
+        <source-file src="src/android/com/iknow/android/models/VideoInfo.java" target-dir="src/com/iknow/android/models/" />
+        <source-file src="src/android/com/iknow/android/utils/CompressVideoUtil.java" target-dir="src/com/iknow/android/utils/" />
+        <source-file src="src/android/com/iknow/android/utils/TrimVideoUtil.java" target-dir="src/com/iknow/android/utils/" />
+        <source-file src="src/android/com/iknow/android/widget/RangeSeekBarView.java" target-dir="src/com/iknow/android/widget/" />
+        <source-file src="src/android/com/iknow/android/widget/SpacesItemDecoration.java" target-dir="src/com/iknow/android/widget/" />
+        <source-file src="src/android/com/iknow/android/widget/SpacesItemDecoration2.java" target-dir="src/com/iknow/android/widget/" />
+        <source-file src="src/android/com/iknow/android/widget/VideoTrimmerView.java" target-dir="src/com/iknow/android/widget/" />
+        <source-file src="src/android/com/iknow/android/ZApplication.java" target-dir="src/com/iknow/android/" />
+
+        <source-file src="src/android/res/drawable/icon_back_drawable.xml" target-dir="res/drawable" />
+
+        <source-file src="src/android/res/drawable-hdpi/icon_back_n.png" target-dir="res/drawable-hdpi" />
+        <source-file src="src/android/res/drawable-hdpi/icon_back_p.png" target-dir="res/drawable-hdpi" />
+        <source-file src="src/android/res/drawable-hdpi/icon_seek_bar.png" target-dir="res/drawable-hdpi" />
+        <source-file src="src/android/res/drawable-hdpi/icon_video_pause_black.png" target-dir="res/drawable-hdpi" />
+        <source-file src="src/android/res/drawable-hdpi/icon_video_play_black.png" target-dir="res/drawable-hdpi" />
+        <source-file src="src/android/res/drawable-hdpi/icon_video_selected.png" target-dir="res/drawable-hdpi" />
+        <source-file src="src/android/res/drawable-hdpi/icon_video_unselected.png" target-dir="res/drawable-hdpi" />
+        <source-file src="src/android/res/drawable-hdpi/icon_video.png" target-dir="res/drawable-hdpi" />
+
+        <source-file src="src/android/res/drawable-xhdpi/icon_recoder.png" target-dir="res/drawable-xhdpi" />
+        <source-file src="src/android/res/drawable-xhdpi/icon_video_thumb_handle.png" target-dir="res/drawable-xhdpi" />
+        <source-file src="src/android/res/drawable-xhdpi/upload_overlay_black.9.png" target-dir="res/drawable-xhdpi" />
+        <source-file src="src/android/res/drawable-xhdpi/upload_overlay_trans.9.png" target-dir="res/drawable-xhdpi" />
+
+        <source-file src="src/android/res/layout/activity_trimmer_layout.xml" target-dir="res/layout" />
+        <source-file src="src/android/res/layout/video_select_gridview_item.xml" target-dir="res/layout" />
+        <source-file src="src/android/res/layout/video_select_layout.xml" target-dir="res/layout" />
+        <source-file src="src/android/res/layout/video_thumb_item_layout.xml" target-dir="res/layout" />
+        <source-file src="src/android/res/layout/video_trimmer_view.xml" target-dir="res/layout" />
+
+        <source-file src="src/android/res/values/trimmer_attrs.xml" target-dir="res/values" />
+        <source-file src="src/android/res/values/trimmer_colors.xml" target-dir="res/values" />
+        <source-file src="src/android/res/values/trimmer_dimens.xml" target-dir="res/values" />
+        <source-file src="src/android/res/values/trimmer_strings.xml" target-dir="res/values" />
+        <source-file src="src/android/res/values/trimmer_styles.xml" target-dir="res/values" />
+
     </platform>
 </plugin>
