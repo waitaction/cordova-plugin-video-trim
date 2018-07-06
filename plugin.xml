@@ -31,6 +31,8 @@
 
         <source-file src="src/android/com/iknow/android/features/select/VideoSelectActivity.java" target-dir="src/com/iknow/android/features/select/" />
         <source-file src="src/android/com/iknow/android/features/select/VideoSelectAdapter.java" target-dir="src/com/iknow/android/features/select/" />
+        <source-file src="src/android/com/iknow/android/features/trim/VideoTrimmerActivity.java" target-dir="src/com/iknow/android/features/trim/" />
+        <source-file src="src/android/com/iknow/android/features/trim/VideoTrimmerAdapter.java" target-dir="src/com/iknow/android/features/trim/" />
         <source-file src="src/android/com/iknow/android/interfaces/CompressVideoListener.java" target-dir="src/com/iknow/android/interfaces/" />
         <source-file src="src/android/com/iknow/android/interfaces/IVideoTrimmerView.java" target-dir="src/com/iknow/android/interfaces/" />
         <source-file src="src/android/com/iknow/android/interfaces/TrimVideoListener.java" target-dir="src/com/iknow/android/interfaces/" />
