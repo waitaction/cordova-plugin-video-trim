@@ -16,7 +16,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import com.iknow.android.R;
+import $PACKAGE_NAME.R;
 import com.iknow.android.utils.TrimVideoUtil;
 import iknow.android.utils.DateUtil;
 import iknow.android.utils.UnitConverter;

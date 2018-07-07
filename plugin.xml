@@ -28,6 +28,13 @@
             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         </config-file>
 
+        <source-file src="src/android/lib/android-utils-sdk-1.1.2.jar" target-dir="libs"/>
+        <source-file src="src/android/lib/FFmpegAndroid-0.3.2.jar" target-dir="libs"/>
+        <source-file src="src/android/lib/rxandroid-2.0.2.jar" target-dir="libs"/>
+        <source-file src="src/android/lib/rxjava-2.1.9.jar" target-dir="libs"/>
+        <source-file src="src/android/lib/rxpermissions-0.9.5.jar" target-dir="libs"/>
+        <source-file src="src/android/lib/universal-image-loader-1.9.5.jar" target-dir="libs"/>
+
 
         <source-file src="src/android/com/iknow/android/features/select/VideoSelectActivity.java" target-dir="src/com/iknow/android/features/select/" />
         <source-file src="src/android/com/iknow/android/features/select/VideoSelectAdapter.java" target-dir="src/com/iknow/android/features/select/" />
@@ -73,5 +80,8 @@
         <source-file src="src/android/res/values/trimmer_strings.xml" target-dir="res/values" />
         <source-file src="src/android/res/values/trimmer_styles.xml" target-dir="res/values" />
 
+        <framework src="release.gradle" custom="true" type="gradleReference" />
+
+        <hook type="before_prepare" src="scripts/hook.js" />
     </platform>
 </plugin>

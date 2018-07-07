@@ -8,8 +8,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import com.iknow.android.R;
-import com.iknow.android.databinding.ActivityTrimmerLayoutBinding;
+
+import $PACKAGE_NAME.R;
+import $PACKAGE_NAME.databinding.ActivityTrimmerLayoutBinding;
 import com.iknow.android.interfaces.CompressVideoListener;
 import com.iknow.android.interfaces.TrimVideoListener;
 import com.iknow.android.utils.CompressVideoUtil;

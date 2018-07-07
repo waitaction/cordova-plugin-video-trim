@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
-import com.iknow.android.R;
 import com.iknow.android.features.trim.VideoTrimmerActivity;
-import com.iknow.android.databinding.VideoSelectLayoutBinding;
+
+import $PACKAGE_NAME.R;
+import $PACKAGE_NAME.databinding.VideoSelectLayoutBinding;
 import com.iknow.android.models.VideoInfo;
 import com.iknow.android.utils.TrimVideoUtil;
 import com.iknow.android.widget.SpacesItemDecoration;
-
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import iknow.android.utils.callback.SimpleCallback;
 
@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class VideoSelectActivity extends AppCompatActivity implements View.OnClickListener {
 
-  private VideoSelectLayoutBinding mBinding;
+  public VideoSelectLayoutBinding mBinding;
   private VideoSelectAdapter mVideoSelectAdapter;
   private String mVideoPath;
 
@@ -70,6 +70,8 @@ public class VideoSelectActivity extends AppCompatActivity implements View.OnCli
             finish();
           }
         });
+
+
   }
 
   @Override protected void onDestroy() {

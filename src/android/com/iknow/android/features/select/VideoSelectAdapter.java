@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.iknow.android.R;
+import $PACKAGE_NAME.R;
 import com.iknow.android.models.VideoInfo;
 import com.iknow.android.utils.TrimVideoUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
