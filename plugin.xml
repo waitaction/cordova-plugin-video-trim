@@ -77,15 +77,18 @@
         <source-file src="src/android/res/values/trimmer_styles.xml" target-dir="res/values" />
 
         <framework src="src/android/trimmer.gradle" custom="true" type="gradleReference" />
+        <resource-file src="aars/support-v4-23.4.0.aar" target="aars/support-v4-23.4.0.aar" />
+        <resource-file src="aars/appcompat-v7-23.4.0.aar" target="aars/appcompat-v7-23.4.0.aar" />
         <resource-file src="aars/android-utils-sdk-1.1.2.aar" target="aars/android-utils-sdk-1.1.2.aar" />
         <resource-file src="aars/FFmpegAndroid-0.3.2.aar" target="aars/FFmpegAndroid-0.3.2.aar" />
-        <resource-file src="aars/recyclerview-v7-27.1.1.aar" target="aars/recyclerview-v7-27.1.1.aar" />
+        <resource-file src="aars/recyclerview-v7-23.1.1.aar" target="aars/recyclerview-v7-23.1.1.aar" />
         <resource-file src="aars/rxandroid-2.0.2.aar" target="aars/rxandroid-2.0.2.aar" />
         <resource-file src="aars/rxpermissions-0.9.5.aar" target="aars/rxpermissions-0.9.5.aar" />
-        
+       
+
         <source-file src="src/android/lib/rxjava-2.1.9.jar" target-dir="libs"/>
         <source-file src="src/android/lib/universal-image-loader-1.9.5.jar" target-dir="libs"/> 
-        <source-file src="src/android/lib/support-annotations-27.1.1.jar" target-dir="libs"/> 
+        <source-file src="src/android/lib/support-annotations-23.4.0.jar" target-dir="libs"/> 
         <!-- <hook type="before_prepare" src="scripts/hook.js" /> -->
     </platform>
 </plugin>
