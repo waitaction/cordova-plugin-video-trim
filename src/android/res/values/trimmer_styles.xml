@@ -1,5 +1,4 @@
 <resources>
-
     <style name="Video_Trim_SeekBar" parent="@android:style/Widget.SeekBar">
         <item name="android:maxHeight">20.0dip</item>
         <item name="android:indeterminateOnly">false</item>

@@ -16,7 +16,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import $PACKAGE_NAME.R;
+
+import com.iknow.android.MResource;
 import com.iknow.android.utils.TrimVideoUtil;
 import iknow.android.utils.DateUtil;
 import iknow.android.utils.UnitConverter;
@@ -59,7 +60,7 @@ public class RangeSeekBarView extends View {
   private double min_width = 1;//最小裁剪距离
   private boolean notifyWhileDragging = false;
   private OnRangeSeekBarChangeListener mRangeSeekBarChangeListener;
-  private int whiteColorRes = getContext().getResources().getColor(R.color.white);
+  private int whiteColorRes = getContext().getResources().getColor(MResource.getIdByName(this.getContext(),"color","white")  );
 
   public enum Thumb {
     MIN, MAX
@@ -88,7 +89,7 @@ public class RangeSeekBarView extends View {
 
   private void init() {
     mScaledTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-    thumbImageLeft = BitmapFactory.decodeResource(getResources(), R.drawable.icon_video_thumb_handle);
+    thumbImageLeft = BitmapFactory.decodeResource(getResources(), MResource.getIdByName(this.getContext(),"drawable","icon_video_thumb_handle") );
 
     int width = thumbImageLeft.getWidth();
     int height = thumbImageLeft.getHeight();
@@ -103,7 +104,7 @@ public class RangeSeekBarView extends View {
     thumbPressedImage = thumbImageLeft;
     thumbWidth = newWidth;
     thumbHalfWidth = thumbWidth / 2;
-    int shadowColor = getContext().getResources().getColor(R.color.shadow_color);
+    int shadowColor = getContext().getResources().getColor( MResource.getIdByName(this.getContext(),"color","shadow_color"));
     mShadow.setAntiAlias(true);
     mShadow.setColor(shadowColor);
 

@@ -4,12 +4,6 @@ import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-/**
- * Author: Jason.Chou
- * Email: who_know_me@163.com
- * Created: 2016年05月04日 11:27 AM
- * Description:
- */
 public class SpacesItemDecoration extends RecyclerView.ItemDecoration{
 
   private int halfSpace;

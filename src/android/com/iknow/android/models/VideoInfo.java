@@ -8,12 +8,6 @@ import android.net.Uri;
 import java.io.File;
 import java.io.Serializable;
 
-/**
- * Author：J.Chou
- * Date：  2016.08.01 3:28 PM
- * Email： who_know_me@163.com
- * Describe:
- */
 public class VideoInfo implements Serializable, Cloneable {
 
     private long videoId;

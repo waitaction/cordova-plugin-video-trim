@@ -111,7 +111,7 @@ public class TrimVideoUtil {
     Observable.create(new ObservableOnSubscribe<List<VideoInfo>>() {
 
       @Override public void subscribe(ObservableEmitter<List<VideoInfo>> emitter) throws Exception {
-        List<VideoInfo> videos = new ArrayList<>();
+        List<VideoInfo> videos = new ArrayList();
         ContentResolver contentResolver = mContext.getContentResolver();
         Cursor cursor =
             contentResolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Video.Media.DATE_MODIFIED + " desc");
