@@ -14,13 +14,6 @@ import com.iknow.android.utils.TrimVideoUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * author : J.Chou
- * e-mail : who_know_me@163.com
- * time   : 2018/05/30/4:20 PM
- * version: 1.0
- * description:
- */
 public class VideoTrimmerAdapter extends RecyclerView.Adapter {
     private List<Bitmap> mBitmaps = new ArrayList();
     private LayoutInflater mInflater;

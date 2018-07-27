@@ -12,12 +12,13 @@
         <clobbers target="cordova.plugins.video.trimmer" />
     </js-module>
     <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="CordovaTrimmer">
+                <param name="android-package" value="com.iknow.android.TrimmerCordovaPlugin" />
+            </feature>
+        </config-file>
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
             <activity android:name="com.iknow.android.features.select.VideoSelectActivity">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
             </activity>
 
             <activity android:name="com.iknow.android.features.trim.VideoTrimmerActivity"/>
@@ -29,7 +30,7 @@
         </config-file>
 
 
-
+        <source-file src="src/android/com/iknow/android/TrimmerCordovaPlugin.java" target-dir="src/com/iknow/android" />
         <source-file src="src/android/com/iknow/android/features/select/VideoSelectActivity.java" target-dir="src/com/iknow/android/features/select" />
         <source-file src="src/android/com/iknow/android/features/select/VideoSelectAdapter.java" target-dir="src/com/iknow/android/features/select" />
         <source-file src="src/android/com/iknow/android/features/trim/VideoTrimmerActivity.java" target-dir="src/com/iknow/android/features/trim" />
@@ -84,11 +85,11 @@
         <resource-file src="aars/recyclerview-v7-23.1.1.aar" target="aars/recyclerview-v7-23.1.1.aar" />
         <resource-file src="aars/rxandroid-2.0.2.aar" target="aars/rxandroid-2.0.2.aar" />
         <resource-file src="aars/rxpermissions-0.9.5.aar" target="aars/rxpermissions-0.9.5.aar" />
-       
+
 
         <source-file src="src/android/lib/rxjava-2.1.9.jar" target-dir="libs"/>
-        <source-file src="src/android/lib/universal-image-loader-1.9.5.jar" target-dir="libs"/> 
-        <source-file src="src/android/lib/support-annotations-23.4.0.jar" target-dir="libs"/> 
+        <source-file src="src/android/lib/universal-image-loader-1.9.5.jar" target-dir="libs"/>
+        <source-file src="src/android/lib/support-annotations-23.4.0.jar" target-dir="libs"/>
         <!-- <hook type="before_prepare" src="scripts/hook.js" /> -->
     </platform>
 </plugin>

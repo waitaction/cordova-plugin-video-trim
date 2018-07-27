@@ -8,6 +8,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class TrimmerCordovaPlugin extends CordovaPlugin {
 
@@ -27,9 +28,13 @@ public class TrimmerCordovaPlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        JSONObject jsObj = args.getJSONObject(0);
+
+
         if (action.equals("openTrimmerPage")) {
             // todo
-            callbackContext.success();
+            String path= jsObj.getString("path");
+            callbackContext.success(path);
             return true;
         }
 

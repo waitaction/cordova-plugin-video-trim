@@ -1,11 +1,11 @@
 
 var exec = require('cordova/exec');
 var Trimmer = function () { }
-Trimmer.prototype.openTrimmerPage= function(cdvPath,success,error){
-    exec(success,error,"TrimmerCordovaPlugin","openTrimmerPage",[cdvPath]);
+Trimmer.prototype.openTrimmerPage= function(opt,success,error){
+    exec(success,error,"CordovaTrimmer","openTrimmerPage",[opt]);
 }
 Trimmer.prototype.openSelectVideoPage=function(success,error){
-    exec(success,error,"TrimmerCordovaPlugin","openSelectVideoPage",[cdvPath]);
+    exec(success,error,"CordovaTrimmer","openSelectVideoPage",[cdvPath]);
 }
 module.exports = new Trimmer();
 
