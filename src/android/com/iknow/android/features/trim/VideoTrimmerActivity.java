@@ -17,7 +17,7 @@ import com.iknow.android.widget.VideoTrimmerView;
 public class VideoTrimmerActivity extends Activity implements TrimVideoListener {
 
     private static final String TAG = "jason";
-    private static final String VIDEO_PATH_KEY = "video-file-path";
+    private static final String VIDEO_PATH_KEY = "path";
     public static final int VIDEO_TRIM_REQUEST_CODE = 0x001;
     private ProgressDialog mProgressDialog;
     private VideoTrimmerView trimmerView;
@@ -39,7 +39,9 @@ public class VideoTrimmerActivity extends Activity implements TrimVideoListener 
         setContentView(MResource.getIdByName(this, "layout", "activity_trimmer_layout"));
         Bundle bd = getIntent().getExtras();
         String path = "";
-        if (bd != null) path = bd.getString(VIDEO_PATH_KEY);
+        if (bd != null){
+            path = bd.getString(VIDEO_PATH_KEY);
+        }
         trimmerView = (VideoTrimmerView)findViewById(MResource.getIdByName(this, "id", "trimmer_view"));
         if (trimmerView != null) {
             trimmerView.setOnTrimVideoListener(this);

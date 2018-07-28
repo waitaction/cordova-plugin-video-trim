@@ -68,7 +68,6 @@ public class VideoSelectActivity extends Activity implements View.OnClickListene
         int thumbHeight = (int) ((float) 50 * metrics.density + 0.5F);
         TrimVideoUtil.init(metrics.widthPixels, recyclerViewPadding, thumbHeight);
 
-        // Always true pre-M
         TrimVideoUtil.loadVideoFiles(VideoSelectActivity.this, new SimpleCallback() {
             @SuppressWarnings("unchecked")
             @Override

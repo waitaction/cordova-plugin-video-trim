@@ -7,7 +7,9 @@
     <author>350561378@qq.com</author>
     <license>Apache License Version 2.0</license>
     <keywords>cordova,video,video trimmer</keywords>
-
+    <dependency id="cordova-plugin-device" />
+    <dependency id="cordova-plugin-media" />
+    <dependency id="cordova-plugin-media-capture" />
     <js-module name="CordovaTrimmer" src="www/cordova-plugin-video-trimmer.js">
         <clobbers target="cordova.plugins.video.trimmer" />
     </js-module>

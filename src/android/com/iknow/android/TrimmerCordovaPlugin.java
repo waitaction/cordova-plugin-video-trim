@@ -3,6 +3,8 @@ package com.iknow.android;
 import android.app.Activity;
 import android.content.Intent;
 import com.iknow.android.features.select.VideoSelectActivity;
+import com.iknow.android.features.trim.VideoTrimmerActivity;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
