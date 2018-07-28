@@ -37,12 +37,21 @@ public class TrimVideoUtil {
   public static final int VIDEO_MAX_TIME = 10;// 10秒
   public static final long MAX_SHOOT_DURATION = VIDEO_MAX_TIME * 1000L;//视频最多剪切多长时间10s
   public static final int MAX_COUNT_RANGE = 10;  //seekBar的区域内一共有多少张图片
-  private static final int SCREEN_WIDTH_FULL = DeviceUtil.getDeviceWidth();
-  public static final int RECYCLER_VIEW_PADDING = UnitConverter.dpToPx(35);
-  public static final int VIDEO_FRAMES_WIDTH = SCREEN_WIDTH_FULL - RECYCLER_VIEW_PADDING * 2;
-  private static final int THUMB_WIDTH = (SCREEN_WIDTH_FULL - RECYCLER_VIEW_PADDING * 2) / VIDEO_MAX_TIME;
-  private static final int THUMB_HEIGHT = UnitConverter.dpToPx(50);
+  public static int RECYCLER_VIEW_PADDING;
+  private static int THUMB_HEIGHT;
+  private static int SCREEN_WIDTH_FULL;
 
+  public static int VIDEO_FRAMES_WIDTH;
+  private static int THUMB_WIDTH;
+
+
+  public static void init(int screenWidthFull, int recyclerViewPadding, int thumbHeight) {
+      TrimVideoUtil.RECYCLER_VIEW_PADDING = recyclerViewPadding; // UnitConverter.dpToPx(35);
+      TrimVideoUtil.THUMB_HEIGHT = thumbHeight; // UnitConverter.dpToPx(50);
+      TrimVideoUtil.SCREEN_WIDTH_FULL = screenWidthFull;
+      TrimVideoUtil.VIDEO_FRAMES_WIDTH = SCREEN_WIDTH_FULL - RECYCLER_VIEW_PADDING * 2;
+      TrimVideoUtil.THUMB_WIDTH = (SCREEN_WIDTH_FULL - RECYCLER_VIEW_PADDING * 2) / VIDEO_MAX_TIME;
+  }
   public static void trim(Context context, String inputFile, String outputFile, long startMs, long endMs, final TrimVideoListener callback) {
     final String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
     final String outputName = "trimmedVideo_" + timeStamp + ".mp4";

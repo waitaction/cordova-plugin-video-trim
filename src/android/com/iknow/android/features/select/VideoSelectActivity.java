@@ -18,6 +18,7 @@ import iknow.android.utils.callback.SimpleCallback;
 import iknow.android.utils.callback.SingleCallback;
 import io.reactivex.functions.Consumer;
 import java.util.List;
+import android.util.DisplayMetrics;
 
 public class VideoSelectActivity extends Activity implements View.OnClickListener {
 
@@ -57,7 +58,10 @@ public class VideoSelectActivity extends Activity implements View.OnClickListene
                 nextStep.setTextAppearance(VideoSelectActivity.this, isSelected ? MResource.getIdByName(VideoSelectActivity.this, "style", "blue_text_18_style") : MResource.getIdByName(VideoSelectActivity.this, "style", "gray_text_18_style"));
             }
         });
-
+        DisplayMetrics metrics=  this.getResources().getDisplayMetrics();
+        int recyclerViewPadding= (int)((float)35 * metrics.density + 0.5F);
+        int thumbHeight=(int)((float)50 * metrics.density + 0.5F);
+        TrimVideoUtil.init(metrics.widthPixels,recyclerViewPadding,thumbHeight);
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(new Consumer<Boolean>() {
             @Override
