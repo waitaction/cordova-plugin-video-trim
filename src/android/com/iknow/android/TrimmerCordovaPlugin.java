@@ -27,36 +27,42 @@ public class TrimmerCordovaPlugin extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         activity = cordova.getActivity();
+
     }
 
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        JSONObject jsObj = args.getJSONObject(0);
+    public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
 
 
         if (action.equals("openTrimmerPage")) {
-            // todo
+            JSONObject jsObj = args.getJSONObject(0);
             String path = jsObj.getString("path");
             final Intent intent = new Intent();
-            intent.setClass(this.activity, VideoSelectActivity.class);
+            intent.setClass(this.activity, VideoTrimmerActivity.class);
             intent.putExtra("path", path);
-            this.activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    TrimmerCordovaPlugin.this.activity.startActivity(intent);
-                }
-            });
-
-
+            TrimmerCordovaPlugin.this.activity.startActivity(intent);
+            // this.activity.runOnUiThread(new Runnable() {
+            //     @Override
+            //     public void run() {
+            //         TrimmerCordovaPlugin.this.activity.startActivity(intent);
+            //     }
+            // });
             //callbackContext.success(path);
             return true;
         }
 
         if (action.equals("openSelectVideoPage")) {
+            final Intent intent = new Intent();
+            intent.setClass(this.activity, VideoSelectActivity.class);
+            TrimmerCordovaPlugin.this.activity.startActivity(intent);
             callbackContext.success();
             return true;
         }
-        return false;
+        if (action.equals("init")){
+            ZApplication.init(activity);
+            callbackContext.success();
+        }
+        return true;
     }
 
     @Override

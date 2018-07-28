@@ -7,9 +7,14 @@
     <author>350561378@qq.com</author>
     <license>Apache License Version 2.0</license>
     <keywords>cordova,video,video trimmer</keywords>
+
+    <engines>
+        <engine name="cordova-android" version=">=6.0.0" />
+    </engines>
+
     <dependency id="cordova-plugin-device" />
-    <dependency id="cordova-plugin-media" />
-    <dependency id="cordova-plugin-media-capture" />
+    <dependency id="cordova-plugin-media" version="^2.4.0" />
+    <dependency id="cordova-plugin-media-capture" version="^1.4.0" />
     <js-module name="CordovaTrimmer" src="www/cordova-plugin-video-trimmer.js">
         <clobbers target="cordova.plugins.video.trimmer" />
     </js-module>
@@ -83,11 +88,11 @@
         <resource-file src="aars/android-utils-sdk-1.1.2.aar" target="aars/android-utils-sdk-1.1.2.aar" />
         <resource-file src="aars/FFmpegAndroid-0.3.2.aar" target="aars/FFmpegAndroid-0.3.2.aar" />
         <resource-file src="aars/recyclerview-v7-23.1.1.aar" target="aars/recyclerview-v7-23.1.1.aar" />
-        <resource-file src="aars/rxandroid-2.0.2.aar" target="aars/rxandroid-2.0.2.aar" />
-        <resource-file src="aars/rxpermissions-0.9.5.aar" target="aars/rxpermissions-0.9.5.aar" />
+        <!-- <resource-file src="aars/rxandroid-2.0.2.aar" target="aars/rxandroid-2.0.2.aar" /> -->
+        <!-- <resource-file src="aars/rxpermissions-0.9.5.aar" target="aars/rxpermissions-0.9.5.aar" /> -->
 
 
-        <source-file src="src/android/lib/rxjava-2.1.9.jar" target-dir="libs"/>
+        <!-- <source-file src="src/android/lib/rxjava-2.1.9.jar" target-dir="libs"/> -->
         <source-file src="src/android/lib/universal-image-loader-1.9.5.jar" target-dir="libs"/>
         <source-file src="src/android/lib/support-annotations-23.4.0.jar" target-dir="libs"/>
         <!-- <hook type="before_prepare" src="scripts/hook.js" /> -->

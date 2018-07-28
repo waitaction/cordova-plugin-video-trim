@@ -13,21 +13,20 @@ import com.iknow.android.interfaces.TrimVideoListener;
 import com.iknow.android.utils.CompressVideoUtil;
 import com.iknow.android.widget.VideoTrimmerView;
 
-
 public class VideoTrimmerActivity extends Activity implements TrimVideoListener {
 
     private static final String TAG = "jason";
     private static final String VIDEO_PATH_KEY = "path";
+    private static final String VIDEO_OUT_PATH_KEY = "savePath";
     public static final int VIDEO_TRIM_REQUEST_CODE = 0x001;
     private ProgressDialog mProgressDialog;
     private VideoTrimmerView trimmerView;
-
-    public static void call(Activity from, String videoPath) {
+    private String saveVideoPath;
+    public static void call(Activity from, String videoPath,String savePath) {
         if (!TextUtils.isEmpty(videoPath)) {
-            Bundle bundle = new Bundle();
-            bundle.putString(VIDEO_PATH_KEY, videoPath);
             Intent intent = new Intent(from, VideoTrimmerActivity.class);
-            intent.putExtras(bundle);
+            intent.putExtra(VIDEO_PATH_KEY, videoPath);
+            intent.putExtra(VIDEO_OUT_PATH_KEY,savePath);
             from.startActivityForResult(intent, VIDEO_TRIM_REQUEST_CODE);
         }
     }
@@ -35,13 +34,9 @@ public class VideoTrimmerActivity extends Activity implements TrimVideoListener 
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        ZApplication.init(this);
         setContentView(MResource.getIdByName(this, "layout", "activity_trimmer_layout"));
-        Bundle bd = getIntent().getExtras();
-        String path = "";
-        if (bd != null){
-            path = bd.getString(VIDEO_PATH_KEY);
-        }
+        String path = getIntent().getStringExtra(VIDEO_PATH_KEY);
+        this.saveVideoPath = getIntent().getStringExtra(VIDEO_OUT_PATH_KEY);
         trimmerView = (VideoTrimmerView)findViewById(MResource.getIdByName(this, "id", "trimmer_view"));
         if (trimmerView != null) {
             trimmerView.setOnTrimVideoListener(this);
@@ -75,7 +70,7 @@ public class VideoTrimmerActivity extends Activity implements TrimVideoListener 
     @Override
     public void onFinishTrim(String in) {
         //TODO: please handle your trimmed video url here!!!
-        String out = "/storage/emulated/0/Android/data/com.iknow.android/cache/compress.mp4";
+        String out = saveVideoPath.replace("file:///", "").replace("file://", "");
         buildDialog(getResources().getString(MResource.getIdByName(this, "string", "compressing"))).show();
         CompressVideoUtil.compress(this, in, out, new CompressVideoListener() {
             @Override

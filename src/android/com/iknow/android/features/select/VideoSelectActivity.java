@@ -8,20 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.iknow.android.MResource;
 import com.iknow.android.ZApplication;
 import com.iknow.android.features.trim.VideoTrimmerActivity;
 import com.iknow.android.models.VideoInfo;
 import com.iknow.android.utils.TrimVideoUtil;
 import com.iknow.android.widget.SpacesItemDecoration;
-
 import iknow.android.utils.callback.SimpleCallback;
 import iknow.android.utils.callback.SingleCallback;
-
-
 import java.util.List;
-
 import android.util.DisplayMetrics;
 
 public class VideoSelectActivity extends Activity implements View.OnClickListener {
@@ -34,7 +29,7 @@ public class VideoSelectActivity extends Activity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        ZApplication.init(this);
+
         setContentView(MResource.getIdByName(this, "layout", "video_select_layout"));
         GridLayoutManager manager = new GridLayoutManager(this, 4);
         RecyclerView videoSelectRecyclerview = (RecyclerView) findViewById(MResource.getIdByName(this, "id", "video_select_recyclerview"));
