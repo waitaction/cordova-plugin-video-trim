@@ -13,17 +13,9 @@ import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
 import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
 import com.iknow.android.interfaces.TrimVideoListener;
 import com.iknow.android.models.VideoInfo;
-import iknow.android.utils.DeviceUtil;
-import iknow.android.utils.UnitConverter;
 import iknow.android.utils.callback.SimpleCallback;
 import iknow.android.utils.callback.SingleCallback;
 import iknow.android.utils.thread.BackgroundExecutor;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -117,9 +109,7 @@ public class TrimVideoUtil {
 
   public static void loadVideoFiles(final Context mContext, final SimpleCallback simpleCallback) {
 
-    Observable.create(new ObservableOnSubscribe<List<VideoInfo>>() {
 
-      @Override public void subscribe(ObservableEmitter<List<VideoInfo>> emitter) throws Exception {
         List<VideoInfo> videos = new ArrayList();
         ContentResolver contentResolver = mContext.getContentResolver();
         Cursor cursor =
@@ -137,13 +127,11 @@ public class TrimVideoUtil {
           }
           cursor.close();
         }
-        emitter.onNext(videos);
-      }
-    }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<List<VideoInfo>>() {
-      @Override public void accept(List<VideoInfo> videoInfos) throws Exception {
-        if(simpleCallback != null) simpleCallback.success(videoInfos);
-      }
-    });
+        if(simpleCallback != null) simpleCallback.success(videos);
+
+
+
+
   }
 
   public static String getVideoFilePath(String url) {

@@ -1,8 +1,6 @@
 package com.iknow.android;
 
-import android.app.Application;
 import android.content.Context;
-
 import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
 import com.github.hiteshsondhi88.libffmpeg.LoadBinaryResponseHandler;
 import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegNotSupportedException;
@@ -11,37 +9,42 @@ import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-
 import iknow.android.utils.BaseUtils;
 
+public class ZApplication {
 
-public class ZApplication extends Application {
-  @Override public void onCreate() {
-    super.onCreate();
-    BaseUtils.init(this);
-    initImageLoader(this);
-    initFFmpegBinary(this);
-  }
+    private static boolean isInit = false;
 
-  public static void initImageLoader(Context context) {
-    int memoryCacheSize = (int) (Runtime.getRuntime().maxMemory() / 10);
-    ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context).memoryCache(new LRULimitedMemoryCache(memoryCacheSize))
-        .diskCacheFileNameGenerator(new Md5FileNameGenerator())
-        .tasksProcessingOrder(QueueProcessingType.LIFO)
-        .build();
-    // Initialize ImageLoader with configuration.
-    ImageLoader.getInstance().init(config);
-  }
+    public static void init(Context context) {
 
-  private void initFFmpegBinary(Context context) {
-
-    try {
-      FFmpeg.getInstance(context).loadBinary(new LoadBinaryResponseHandler() {
-        @Override public void onFailure() {
+        if (isInit == false) {
+            BaseUtils.init(context);
+            initImageLoader(context);
+            initFFmpegBinary(context);
         }
-      });
-    } catch (FFmpegNotSupportedException e) {
-      e.printStackTrace();
+        isInit = true;
     }
-  }
+
+    public static void initImageLoader(Context context) {
+        int memoryCacheSize = (int) (Runtime.getRuntime().maxMemory() / 10);
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context).memoryCache(new LRULimitedMemoryCache(memoryCacheSize))
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .build();
+        // Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(config);
+    }
+
+    private static void initFFmpegBinary(Context context) {
+
+        try {
+            FFmpeg.getInstance(context).loadBinary(new LoadBinaryResponseHandler() {
+                @Override
+                public void onFailure() {
+                }
+            });
+        } catch (FFmpegNotSupportedException e) {
+            e.printStackTrace();
+        }
+    }
 }

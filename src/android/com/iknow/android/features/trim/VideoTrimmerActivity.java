@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import com.iknow.android.MResource;
+import com.iknow.android.ZApplication;
 import com.iknow.android.interfaces.CompressVideoListener;
 import com.iknow.android.interfaces.TrimVideoListener;
 import com.iknow.android.utils.CompressVideoUtil;
@@ -34,6 +35,7 @@ public class VideoTrimmerActivity extends Activity implements TrimVideoListener 
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        ZApplication.init(this);
         setContentView(MResource.getIdByName(this, "layout", "activity_trimmer_layout"));
         Bundle bd = getIntent().getExtras();
         String path = "";

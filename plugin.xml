@@ -18,10 +18,8 @@
             </feature>
         </config-file>
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
-            <activity android:name="com.iknow.android.features.select.VideoSelectActivity">
-            </activity>
-
-            <activity android:name="com.iknow.android.features.trim.VideoTrimmerActivity"/>
+            <activity android:name="com.iknow.android.features.select.VideoSelectActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" />
+            <activity android:name="com.iknow.android.features.trim.VideoTrimmerActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar"/>
         </config-file>
 
         <config-file parent="/manifest" target="AndroidManifest.xml">

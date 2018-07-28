@@ -15,11 +15,8 @@ import com.iknow.android.utils.TrimVideoUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.ArrayList;
 import iknow.android.utils.DateUtil;
-import iknow.android.utils.DeviceUtil;
 import iknow.android.utils.callback.SingleCallback;
-
 import java.util.List;
-
 
 public class VideoSelectAdapter extends RecyclerView.Adapter<VideoSelectAdapter.VideoViewHolder> {
 
@@ -43,10 +40,10 @@ public class VideoSelectAdapter extends RecyclerView.Adapter<VideoSelectAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
-
         VideoInfo video = mVideoListData.get(position);
         holder.durationTv.setText(DateUtil.convertSecondsToTime(video.getDuration() / 1000));
-        ImageLoader.getInstance().displayImage(TrimVideoUtil.getVideoFilePath(video.getVideoPath()), holder.videoCover);
+        String videoPath = TrimVideoUtil.getVideoFilePath(video.getVideoPath());
+        ImageLoader.getInstance().displayImage(videoPath, holder.videoCover);
     }
 
     @Override
@@ -72,12 +69,11 @@ public class VideoSelectAdapter extends RecyclerView.Adapter<VideoSelectAdapter.
         VideoViewHolder(final View itemView) {
             super(itemView);
             videoItemView = itemView.findViewById(MResource.getIdByName(VideoSelectAdapter.this.context, "id", "video_view"));
-            videoCover =(ImageView) itemView.findViewById(MResource.getIdByName(VideoSelectAdapter.this.context, "id", "cover_image"));
-            durationTv =(TextView) itemView.findViewById(MResource.getIdByName(VideoSelectAdapter.this.context, "id", "video_duration"));
+            videoCover = (ImageView) itemView.findViewById(MResource.getIdByName(VideoSelectAdapter.this.context, "id", "cover_image"));
+            durationTv = (TextView) itemView.findViewById(MResource.getIdByName(VideoSelectAdapter.this.context, "id", "video_duration"));
             videoSelectPanel = itemView.findViewById(MResource.getIdByName(VideoSelectAdapter.this.context, "id", "video_select_panel"));
-            selectIcon =(ImageView) itemView.findViewById(MResource.getIdByName(VideoSelectAdapter.this.context, "id", "select"));
-
-            int size = DeviceUtil.getDeviceWidth() / 4;
+            selectIcon = (ImageView) itemView.findViewById(MResource.getIdByName(VideoSelectAdapter.this.context, "id", "select"));
+            int size = VideoSelectAdapter.this.context.getResources().getDisplayMetrics().widthPixels / 4; //    DeviceUtil.getDeviceWidth() / 4;
             FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) videoCover.getLayoutParams();
             params.width = size;
             params.height = size;

@@ -1,6 +1,6 @@
 package com.iknow.android.features.select;
 
-import android.Manifest;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,16 +8,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.iknow.android.MResource;
+import com.iknow.android.ZApplication;
 import com.iknow.android.features.trim.VideoTrimmerActivity;
 import com.iknow.android.models.VideoInfo;
 import com.iknow.android.utils.TrimVideoUtil;
 import com.iknow.android.widget.SpacesItemDecoration;
-import com.tbruyelle.rxpermissions2.RxPermissions;
+
 import iknow.android.utils.callback.SimpleCallback;
 import iknow.android.utils.callback.SingleCallback;
-import io.reactivex.functions.Consumer;
+
+
 import java.util.List;
+
 import android.util.DisplayMetrics;
 
 public class VideoSelectActivity extends Activity implements View.OnClickListener {
@@ -30,22 +34,22 @@ public class VideoSelectActivity extends Activity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-
+        ZApplication.init(this);
         setContentView(MResource.getIdByName(this, "layout", "video_select_layout"));
         GridLayoutManager manager = new GridLayoutManager(this, 4);
-        RecyclerView videoSelectRecyclerview =(RecyclerView) findViewById(MResource.getIdByName(this, "id", "video_select_recyclerview"));
+        RecyclerView videoSelectRecyclerview = (RecyclerView) findViewById(MResource.getIdByName(this, "id", "video_select_recyclerview"));
         videoSelectRecyclerview.addItemDecoration(new SpacesItemDecoration(5));
         videoSelectRecyclerview.setHasFixedSize(true);
         videoSelectRecyclerview.setAdapter(mVideoSelectAdapter = new VideoSelectAdapter(this));
         videoSelectRecyclerview.setLayoutManager(manager);
 
-        ImageView videoShoot =(ImageView) findViewById(MResource.getIdByName(this, "id", "video_shoot"));
+        ImageView videoShoot = (ImageView) findViewById(MResource.getIdByName(this, "id", "video_shoot"));
         videoShoot.setOnClickListener(this);
 
-        mBtnBack =(ImageView) findViewById(MResource.getIdByName(this, "id", "mBtnBack"));
+        mBtnBack = (ImageView) findViewById(MResource.getIdByName(this, "id", "mBtnBack"));
         mBtnBack.setOnClickListener(this);
 
-        nextStep = (TextView)findViewById(MResource.getIdByName(this, "id", "next_step"));
+        nextStep = (TextView) findViewById(MResource.getIdByName(this, "id", "next_step"));
         nextStep.setOnClickListener(this);
         nextStep.setTextAppearance(this, MResource.getIdByName(this, "style", "gray_text_18_style"));
         nextStep.setEnabled(false);
@@ -58,27 +62,21 @@ public class VideoSelectActivity extends Activity implements View.OnClickListene
                 nextStep.setTextAppearance(VideoSelectActivity.this, isSelected ? MResource.getIdByName(VideoSelectActivity.this, "style", "blue_text_18_style") : MResource.getIdByName(VideoSelectActivity.this, "style", "gray_text_18_style"));
             }
         });
-        DisplayMetrics metrics=  this.getResources().getDisplayMetrics();
-        int recyclerViewPadding= (int)((float)35 * metrics.density + 0.5F);
-        int thumbHeight=(int)((float)50 * metrics.density + 0.5F);
-        TrimVideoUtil.init(metrics.widthPixels,recyclerViewPadding,thumbHeight);
-        RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(new Consumer<Boolean>() {
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+
+        int recyclerViewPadding = (int) ((float) 35 * metrics.density + 0.5F);
+        int thumbHeight = (int) ((float) 50 * metrics.density + 0.5F);
+        TrimVideoUtil.init(metrics.widthPixels, recyclerViewPadding, thumbHeight);
+
+        // Always true pre-M
+        TrimVideoUtil.loadVideoFiles(VideoSelectActivity.this, new SimpleCallback() {
+            @SuppressWarnings("unchecked")
             @Override
-            public void accept(Boolean granted) throws Exception {
-                if (granted) { // Always true pre-M
-                    TrimVideoUtil.loadVideoFiles(VideoSelectActivity.this, new SimpleCallback() {
-                        @SuppressWarnings("unchecked")
-                        @Override
-                        public void success(Object obj) {
-                            mVideoSelectAdapter.setVideoData((List<VideoInfo>) obj);
-                        }
-                    });
-                } else {
-                    finish();
-                }
+            public void success(Object obj) {
+                mVideoSelectAdapter.setVideoData((List<VideoInfo>) obj);
             }
         });
+
     }
 
     @Override
