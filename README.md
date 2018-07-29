@@ -33,7 +33,7 @@ videoTrimmer.openSelectVideoPage({ outPath: outPath }, function (videoUrl) {
 
 ### 打开摄像头录制短视频
 ```javascript
-videoTrimmer.openRecordVideoPage(function (videoUrl) {
+videoTrimmer.openRecordVideoPage({outPath:outPath},function (videoUrl) {
     // 截取视频片段成功，视频片段地址 videoUrl
     // todo
 }, function (error) { 
