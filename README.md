@@ -31,8 +31,7 @@ videoTrimmer.openSelectVideoPage({ outPath: outPath }, function (videoUrl) {
 });
 ```
 
-### 输入源视频路径截取视频片段
-
+### 打开摄像头录制短视频
 ```javascript
 videoTrimmer.openRecordVideoPage(function (videoUrl) {
     // 截取视频片段成功，视频片段地址 videoUrl
@@ -42,3 +41,19 @@ videoTrimmer.openRecordVideoPage(function (videoUrl) {
 });
 ```
 
+### 输入源视频路径截取视频片段
+
+```javascript
+videoTrimmer.openTrimmerPage({ path:sourcePath , outPath:targetPath },function(videoUrl){
+    // 截取视频片段成功，视频片段地址 videoUrl
+    // todo
+},function(error){
+    // 截取视频片段失败
+});
+```
+
+
+#### 视频截图
+<img src="https://github.com/iknow4/iknow.Images/blob/master/gif/videoTrim.gif?raw=true" width="400" height="700" alt="VideoTrim"/>
+
+<img src="https://github.com/iknow4/iknow.Images/blob/master/gif/videoTrim2.gif?raw=true" width="400" height="700" alt="videoTrim2"/>
