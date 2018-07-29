@@ -35,9 +35,7 @@ public class VideoSelectActivity extends Activity implements View.OnClickListene
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         Intent intent = getIntent();
-        if (intent != null) {
-            this.saveVideoPath = intent.getStringExtra("savePath");
-        }
+
         setContentView(MResource.getIdByName(this, "layout", "video_select_layout"));
         GridLayoutManager manager = new GridLayoutManager(this, 4);
         RecyclerView videoSelectRecyclerview = (RecyclerView) findViewById(MResource.getIdByName(this, "id", "video_select_recyclerview"));
@@ -78,7 +76,14 @@ public class VideoSelectActivity extends Activity implements View.OnClickListene
                 mVideoSelectAdapter.setVideoData((List<VideoInfo>) obj);
             }
         });
+        if (intent != null) {
+            this.saveVideoPath = intent.getStringExtra("savePath");
+            this.mVideoPath = intent.getStringExtra("path");
+            if (this.mVideoPath!=null){
+                VideoTrimmerActivity.call(VideoSelectActivity.this, mVideoPath, saveVideoPath);
+            }
 
+        }
     }
 
     @Override
