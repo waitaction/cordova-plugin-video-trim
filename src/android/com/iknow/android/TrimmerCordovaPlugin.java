@@ -16,9 +16,9 @@ import org.json.JSONObject;
 public class TrimmerCordovaPlugin extends CordovaPlugin {
 
     public static TrimmerCordovaPlugin instance;
+    public static CallbackContext cdvCallbackContetxt;
     private Activity activity;
-    private int REQUEST_GET_TIME = 1;
-    
+
     public TrimmerCordovaPlugin() {
         TrimmerCordovaPlugin.instance = this;
     }
@@ -37,10 +37,13 @@ public class TrimmerCordovaPlugin extends CordovaPlugin {
         if (action.equals("openTrimmerPage")) {
             JSONObject jsObj = args.getJSONObject(0);
             String path = jsObj.getString("path");
+            String outPath = jsObj.getString("outPath");
             final Intent intent = new Intent();
             intent.setClass(this.activity, VideoTrimmerActivity.class);
             intent.putExtra("path", path);
+            intent.putExtra("savePath",outPath);
             TrimmerCordovaPlugin.this.activity.startActivity(intent);
+            cdvCallbackContetxt=callbackContext;
             return true;
         }
 
@@ -49,9 +52,9 @@ public class TrimmerCordovaPlugin extends CordovaPlugin {
             String outPath = jsObj.getString("outPath");
             Intent intent = new Intent();
             intent.setClass(this.activity, VideoSelectActivity.class);
-            intent.putExtra("outPath",outPath);
+            intent.putExtra("savePath",outPath);
             TrimmerCordovaPlugin.this.activity.startActivity(intent);
-            callbackContext.success();
+            cdvCallbackContetxt=callbackContext;
             return true;
         }
         if (action.equals("init")){

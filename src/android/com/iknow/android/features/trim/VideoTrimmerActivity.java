@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+
 import com.iknow.android.MResource;
+import com.iknow.android.TrimmerCordovaPlugin;
 import com.iknow.android.ZApplication;
 import com.iknow.android.interfaces.CompressVideoListener;
 import com.iknow.android.interfaces.TrimVideoListener;
@@ -22,11 +24,12 @@ public class VideoTrimmerActivity extends Activity implements TrimVideoListener 
     private ProgressDialog mProgressDialog;
     private VideoTrimmerView trimmerView;
     private String saveVideoPath;
-    public static void call(Activity from, String videoPath,String savePath) {
+
+    public static void call(Activity from, String videoPath, String savePath) {
         if (!TextUtils.isEmpty(videoPath)) {
             Intent intent = new Intent(from, VideoTrimmerActivity.class);
             intent.putExtra(VIDEO_PATH_KEY, videoPath);
-            intent.putExtra(VIDEO_OUT_PATH_KEY,savePath);
+            intent.putExtra(VIDEO_OUT_PATH_KEY, savePath);
             from.startActivityForResult(intent, VIDEO_TRIM_REQUEST_CODE);
         }
     }
@@ -37,7 +40,7 @@ public class VideoTrimmerActivity extends Activity implements TrimVideoListener 
         setContentView(MResource.getIdByName(this, "layout", "activity_trimmer_layout"));
         String path = getIntent().getStringExtra(VIDEO_PATH_KEY);
         this.saveVideoPath = getIntent().getStringExtra(VIDEO_OUT_PATH_KEY);
-        trimmerView = (VideoTrimmerView)findViewById(MResource.getIdByName(this, "id", "trimmer_view"));
+        trimmerView = (VideoTrimmerView) findViewById(MResource.getIdByName(this, "id", "trimmer_view"));
         if (trimmerView != null) {
             trimmerView.setOnTrimVideoListener(this);
             trimmerView.initVideoByURI(Uri.parse(path));
@@ -79,11 +82,15 @@ public class VideoTrimmerActivity extends Activity implements TrimVideoListener 
 
             @Override
             public void onFailure(String message) {
+                TrimmerCordovaPlugin.cdvCallbackContetxt.error(message);
             }
 
             @Override
             public void onFinish() {
-                if (mProgressDialog.isShowing()) mProgressDialog.dismiss();
+                if (mProgressDialog.isShowing()) {
+                    mProgressDialog.dismiss();
+                }
+                TrimmerCordovaPlugin.cdvCallbackContetxt.success(saveVideoPath);
                 finish();
             }
         });

@@ -36,7 +36,7 @@ public class VideoSelectActivity extends Activity implements View.OnClickListene
         super.onCreate(bundle);
         Intent intent = getIntent();
         if (intent != null) {
-            this.saveVideoPath = intent.getStringExtra("outPath");
+            this.saveVideoPath = intent.getStringExtra("savePath");
         }
         setContentView(MResource.getIdByName(this, "layout", "video_select_layout"));
         GridLayoutManager manager = new GridLayoutManager(this, 4);

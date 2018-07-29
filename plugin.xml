@@ -15,6 +15,7 @@
     <dependency id="cordova-plugin-device" />
     <dependency id="cordova-plugin-media" version="^2.4.0" />
     <dependency id="cordova-plugin-media-capture" version="^1.4.0" />
+    <dependency id="cordova-plugin-streaming-media" url="https://github.com/waitaction/cordova-plugin-streaming-media.git">
     <js-module name="CordovaTrimmer" src="www/cordova-plugin-video-trimmer.js">
         <clobbers target="cordova.plugins.video.trimmer" />
     </js-module>
