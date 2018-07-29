@@ -2,21 +2,25 @@ package com.iknow.android.features.select;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.iknow.android.MResource;
-import com.iknow.android.ZApplication;
 import com.iknow.android.features.trim.VideoTrimmerActivity;
 import com.iknow.android.models.VideoInfo;
 import com.iknow.android.utils.TrimVideoUtil;
 import com.iknow.android.widget.SpacesItemDecoration;
+
 import iknow.android.utils.callback.SimpleCallback;
 import iknow.android.utils.callback.SingleCallback;
+
 import java.util.List;
+
 import android.util.DisplayMetrics;
 
 public class VideoSelectActivity extends Activity implements View.OnClickListener {
@@ -25,11 +29,15 @@ public class VideoSelectActivity extends Activity implements View.OnClickListene
     private String mVideoPath;
     private ImageView mBtnBack;
     private TextView nextStep;
+    private String saveVideoPath = null;
 
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-
+        Intent intent = getIntent();
+        if (intent != null) {
+            this.saveVideoPath = intent.getStringExtra("outPath");
+        }
         setContentView(MResource.getIdByName(this, "layout", "video_select_layout"));
         GridLayoutManager manager = new GridLayoutManager(this, 4);
         RecyclerView videoSelectRecyclerview = (RecyclerView) findViewById(MResource.getIdByName(this, "id", "video_select_recyclerview"));
@@ -83,7 +91,12 @@ public class VideoSelectActivity extends Activity implements View.OnClickListene
         if (v.getId() == mBtnBack.getId()) {
             finish();
         } else if (v.getId() == nextStep.getId()) {
-            VideoTrimmerActivity.call(VideoSelectActivity.this, mVideoPath);
+            VideoTrimmerActivity.call(VideoSelectActivity.this, mVideoPath, saveVideoPath);
         }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        finish();
     }
 }

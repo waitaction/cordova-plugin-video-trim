@@ -18,7 +18,7 @@ public class TrimmerCordovaPlugin extends CordovaPlugin {
     public static TrimmerCordovaPlugin instance;
     private Activity activity;
     private int REQUEST_GET_TIME = 1;
-
+    
     public TrimmerCordovaPlugin() {
         TrimmerCordovaPlugin.instance = this;
     }
@@ -41,19 +41,15 @@ public class TrimmerCordovaPlugin extends CordovaPlugin {
             intent.setClass(this.activity, VideoTrimmerActivity.class);
             intent.putExtra("path", path);
             TrimmerCordovaPlugin.this.activity.startActivity(intent);
-            // this.activity.runOnUiThread(new Runnable() {
-            //     @Override
-            //     public void run() {
-            //         TrimmerCordovaPlugin.this.activity.startActivity(intent);
-            //     }
-            // });
-            //callbackContext.success(path);
             return true;
         }
 
         if (action.equals("openSelectVideoPage")) {
-            final Intent intent = new Intent();
+            JSONObject jsObj = args.getJSONObject(0);
+            String outPath = jsObj.getString("outPath");
+            Intent intent = new Intent();
             intent.setClass(this.activity, VideoSelectActivity.class);
+            intent.putExtra("outPath",outPath);
             TrimmerCordovaPlugin.this.activity.startActivity(intent);
             callbackContext.success();
             return true;
@@ -62,7 +58,7 @@ public class TrimmerCordovaPlugin extends CordovaPlugin {
             ZApplication.init(activity);
             callbackContext.success();
         }
-        return true;
+        return false;
     }
 
     @Override
