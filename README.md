@@ -57,3 +57,5 @@ videoTrimmer.openTrimmerPage({ path:sourcePath , outPath:targetPath },function(v
 <img src="https://github.com/iknow4/iknow.Images/blob/master/gif/videoTrim.gif?raw=true" width="400" height="700" alt="VideoTrim"/>
 
 <img src="https://github.com/iknow4/iknow.Images/blob/master/gif/videoTrim2.gif?raw=true" width="400" height="700" alt="videoTrim2"/>
+
+`cordova-plugin-video-trimmer插件部分代码来源 https://github.com/iknow4/Android-Video-Trimmer `
