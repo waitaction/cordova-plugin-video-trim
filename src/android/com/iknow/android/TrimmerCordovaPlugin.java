@@ -45,7 +45,10 @@ public class TrimmerCordovaPlugin extends CordovaPlugin {
 
         if (action.equals("openSelectVideoPage")) {
             JSONObject jsObj = args.getJSONObject(0);
-            String path = jsObj.getString("path");
+            String path = null;
+            if (!jsObj.isNull("path")) {
+                path = jsObj.getString("path");
+            }
             String outPath = jsObj.getString("outPath");
             Intent intent = new Intent();
             intent.setClass(this.activity, VideoSelectActivity.class);
