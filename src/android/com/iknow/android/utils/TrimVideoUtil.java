@@ -51,7 +51,7 @@ public class TrimVideoUtil {
 
     String start = convertSecondsToTime(startMs / 1000);
     String duration = convertSecondsToTime((endMs - startMs) / 1000);
-
+    //截图命令 ffmpeg.exe -i a.mp4  -y -f image2 -t 0.001 -s  a_pic.jpg
     /** 裁剪视频ffmpeg指令说明：
      * ffmpeg -ss START -t DURATION -i INPUT -vcodec copy -acodec copy OUTPUT
      -ss 开始时间，如： 00:00:20，表示从20秒开始；
