@@ -41,7 +41,11 @@ public class TrimmerCordovaPlugin extends CordovaPlugin implements TrimVideoImgL
             JSONObject jsObj = args.getJSONObject(0);
             String path = jsObj.getString("path");
             String outPath = jsObj.getString("outPath");
-            VideoTrimmerActivity.call(activity, path, outPath);
+            Intent intent = new Intent();
+            intent.setClass(activity, VideoSelectActivity.class);
+            intent.putExtra("path", path);
+            intent.putExtra("savePath", outPath);
+            TrimmerCordovaPlugin.this.activity.startActivity(intent);
             cdvCallbackContetxt = callbackContext;
             return true;
         }
