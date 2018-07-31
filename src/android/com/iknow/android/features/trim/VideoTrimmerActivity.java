@@ -73,7 +73,7 @@ public class VideoTrimmerActivity extends Activity implements TrimVideoListener 
     @Override
     public void onFinishTrim(String in) {
         //TODO: please handle your trimmed video url here!!!
-        String out = saveVideoPath.replace("file:///", "").replace("file://", "");
+        String out = saveVideoPath; //.replace("file:///", "").replace("file://", "");
         buildDialog(getResources().getString(MResource.getIdByName(this, "string", "compressing"))).show();
         CompressVideoUtil.compress(this, in, out, new CompressVideoListener() {
             @Override
