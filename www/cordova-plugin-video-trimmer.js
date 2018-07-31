@@ -32,12 +32,16 @@ Trimmer.prototype.play = function (opt, success, error) {
 }
 
 /**打开摄像头录制视频 */
-Trimmer.prototype.openRecordVideoPage = function (opt,success, error) {
+Trimmer.prototype.openRecordVideoPage = function (opt, success, error) {
     navigator.device.capture.captureVideo(function (mediaFiles) {
-        exec(success, error, "CordovaTrimmer", "openTrimmerPage", [{ path: mediaFiles[0].fullPath,outPath:opt.outPath }]);
+        exec(success, error, "CordovaTrimmer", "openTrimmerPage", [{ path: mediaFiles[0].fullPath, outPath: opt.outPath }]);
     }, function (err) {
         error(err);
     }, { limit: 1, duration: 20 });
+}
+
+Trimmer.prototype.trimVideoImage = function (opt, success, error) {
+    exec(success, error, "CordovaTrimmer", "trimVideoImage", [opt]);
 }
 
 Trimmer.prototype.init = function (success, error) {

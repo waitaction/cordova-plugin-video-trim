@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
 import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
 import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
+import com.iknow.android.interfaces.TrimVideoImgListener;
 import com.iknow.android.interfaces.TrimVideoListener;
 import com.iknow.android.models.VideoInfo;
 import iknow.android.utils.callback.SimpleCallback;
@@ -78,6 +79,33 @@ public class TrimVideoUtil {
     } catch (FFmpegCommandAlreadyRunningException e) {
       e.printStackTrace();
     }
+
+  }
+  public static void trimImg(Context context, String inputFile, String outputFile,  final TrimVideoImgListener callback) {
+    /**
+     * 截图命令 ffmpeg.exe -i a.mp4  -y -f image2 -t 0.001 a_pic.jpg
+     */
+    String cmd = "-i " + inputFile + " -y -f image2 -t 0.001 " + outputFile;
+    String[] command = cmd.split(" ");
+    try {
+      final String tempOutFile = outputFile;
+      FFmpeg.getInstance(context).execute(command, new ExecuteBinaryResponseHandler() {
+
+        @Override public void onSuccess(String s) {
+          callback.onFinishTrimImg(tempOutFile);
+        }
+
+        @Override public void onStart() {
+          callback.onStartTrimImg();
+        }
+        @Override public void onFailure(String message){
+          callback.onCancelTrimImg();
+        }
+      });
+    } catch (FFmpegCommandAlreadyRunningException e) {
+      e.printStackTrace();
+    }
+
   }
 
   public static void backgroundShootVideoThumb(final Context context, final Uri videoUri, final int totalThumbsCount, final long startPosition,
@@ -92,6 +120,7 @@ public class TrimVideoUtil {
           for (long i = 0; i < totalThumbsCount; ++i) {
             long frameTime = startPosition + interval * i;
             Bitmap bitmap = mediaMetadataRetriever.getFrameAtTime(frameTime * 1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
+
             try {
               bitmap = Bitmap.createScaledBitmap(bitmap, THUMB_WIDTH, THUMB_HEIGHT, false);
             } catch (IllegalArgumentException e) {
@@ -125,6 +154,7 @@ public class TrimVideoUtil {
               videos.add(videoInfo);
             }
           }
+
           cursor.close();
         }
         if(simpleCallback != null) simpleCallback.success(videos);
