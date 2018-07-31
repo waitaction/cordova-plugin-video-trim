@@ -61,7 +61,6 @@ videoTrimmer.trimVideoImage({ path:data , outPath:imgPath },function(url){
 ```
 
 #### Demo
-<img src="https://github.com/iknow4/iknow.Images/blob/master/gif/videoTrim.gif?raw=true" width="400" height="700" alt="VideoTrim"/>
 
 <img src="https://github.com/iknow4/iknow.Images/blob/master/gif/videoTrim2.gif?raw=true" width="400" height="700" alt="videoTrim2"/>
 
