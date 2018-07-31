@@ -5,7 +5,7 @@
 ```shell
 cordova plugin add https://github.com/waitaction/cordova-plugin-video-trimmer.git
 ```
-例如`cordova plugin add https://github.com/waitaction/cordova-plugin-video-trimmer.git`
+
 ## 怎么用
 
 ### 初始 cordova-plugin-video-trimmer
