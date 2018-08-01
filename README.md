@@ -2,6 +2,17 @@
 # cordova-plugin-video-trimmer
 截取短视频cordova插件
 ## 安装
+
+先安装依赖项插件
+
+```shell
+cordova plugin cordova-plugin-device
+cordova plugin cordova-plugin-media
+cordova plugin cordova-plugin-media-capture
+```
+`由于安卓版本碎片化问题，以上依赖项必须手动安装`
+正式安装 cordova-plugin-video-trimmer
+
 ```shell
 cordova plugin add https://github.com/waitaction/cordova-plugin-video-trimmer.git
 ```
