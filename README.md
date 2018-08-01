@@ -11,6 +11,7 @@ cordova plugin cordova-plugin-media
 cordova plugin cordova-plugin-media-capture
 ```
 `由于安卓版本碎片化问题，以上依赖项必须手动安装`
+
 正式安装 cordova-plugin-video-trimmer
 
 ```shell
