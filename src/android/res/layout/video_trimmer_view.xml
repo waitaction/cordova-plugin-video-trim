@@ -42,7 +42,7 @@
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="12dp"
-        tools:text="拖动选择你要发表的10秒以内片段"
+        tools:text="拖动选择你要裁剪的10秒以内片段"
         />
     <FrameLayout
         android:id="@+id/video_frames_layout"
