@@ -6,9 +6,9 @@
 先安装依赖项插件
 
 ```shell
-cordova plugin cordova-plugin-device
-cordova plugin cordova-plugin-media
-cordova plugin cordova-plugin-media-capture
+cordova plugin add cordova-plugin-device
+cordova plugin add cordova-plugin-media
+cordova plugin add cordova-plugin-media-capture
 ```
 `由于安卓版本碎片化问题，以上依赖项必须手动安装`
 
