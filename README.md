@@ -1,6 +1,6 @@
 
 # cordova-plugin-video-trimmer
-截取短视频cordova插件
+截取短视频cordova插件，目前支持大于`cordova-android@8.0.0`版本
 ## 安装
 
 先安装依赖项插件

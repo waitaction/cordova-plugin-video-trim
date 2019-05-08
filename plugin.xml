@@ -9,7 +9,7 @@
     <keywords>cordova,video,video trimmer</keywords>
 
     <engines>
-        <engine name="cordova-android" version=">=6.0.0" />
+        <engine name="cordova-android" version=">=8.0.0" />
     </engines>
     <dependency id="cordova-plugin-streaming-media" url="https://github.com/waitaction/cordova-plugin-streaming-media.git"  />
     <js-module name="CordovaTrimmer" src="www/cordova-plugin-video-trimmer.js">
@@ -82,11 +82,11 @@
         <source-file src="src/android/res/values/trimmer_styles.xml" target-dir="res/values" />
 
         <framework src="src/android/trimmer.gradle" custom="true" type="gradleReference" />
-        <resource-file src="aars/support-v4-23.4.0.aar" target="aars/support-v4-23.4.0.aar" />
-        <resource-file src="aars/appcompat-v7-23.4.0.aar" target="aars/appcompat-v7-23.4.0.aar" />
-        <resource-file src="aars/android-utils-sdk-1.1.2.aar" target="aars/android-utils-sdk-1.1.2.aar" />
-        <resource-file src="aars/FFmpegAndroid-0.3.2.aar" target="aars/FFmpegAndroid-0.3.2.aar" />
-        <resource-file src="aars/recyclerview-v7-23.1.1.aar" target="aars/recyclerview-v7-23.1.1.aar" />
+        <resource-file src="aars/support-v4-23.4.0.aar" target="../../aars/support-v4-23.4.0.aar" />
+        <resource-file src="aars/appcompat-v7-23.4.0.aar" target="../../aars/appcompat-v7-23.4.0.aar" />
+        <resource-file src="aars/android-utils-sdk-1.1.2.aar" target="../../aars/android-utils-sdk-1.1.2.aar" />
+        <resource-file src="aars/FFmpegAndroid-0.3.2.aar" target="../../aars/FFmpegAndroid-0.3.2.aar" />
+        <resource-file src="aars/recyclerview-v7-23.1.1.aar" target="../../aars/recyclerview-v7-23.1.1.aar" />
         <!-- <resource-file src="aars/rxandroid-2.0.2.aar" target="aars/rxandroid-2.0.2.aar" /> -->
         <!-- <resource-file src="aars/rxpermissions-0.9.5.aar" target="aars/rxpermissions-0.9.5.aar" /> -->
 
