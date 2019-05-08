@@ -1,16 +1,16 @@
 {
-  "name": "cordova-plugin-video-trimmer",
+  "name": "cordova-plugin-video-trim",
   "version": "1.0.0",
   "description": "视频剪辑Cordova插件",
   "cordova": {
-    "id": "cordova-plugin-video-trimmer",
+    "id": "cordova-plugin-video-trim",
     "platforms": [
       "android"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/waitaction/cordova-plugin-video-trimmer.git"
+    "url": "git+https://github.com/waitaction/cordova-plugin-video-trim.git"
   },
   "keywords": [
     "cordova",

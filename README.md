@@ -1,5 +1,5 @@
 
-# cordova-plugin-video-trimmer
+# cordova-plugin-video-trim
 截取短视频cordova插件，目前支持大于`cordova-android@8.0.0`版本
 ## 安装
 
@@ -12,15 +12,15 @@ cordova plugin add cordova-plugin-media-capture
 ```
 `由于安卓版本碎片化问题，以上依赖项必须手动安装`
 
-正式安装 cordova-plugin-video-trimmer
+正式安装 cordova-plugin-video-trim
 
 ```shell
-cordova plugin add https://github.com/waitaction/cordova-plugin-video-trimmer.git
+cordova plugin add https://github.com/waitaction/cordova-plugin-video-trim.git
 ```
 
 ## 怎么用
 
-### 初始 cordova-plugin-video-trimmer
+### 初始 cordova-plugin-video-trim
 
 ```javascript
 videoTrimmer.init(function () {
@@ -76,4 +76,4 @@ videoTrimmer.trimVideoImage({ path:data , outPath:imgPath },function(url){
 
 <img src="https://github.com/iknow4/iknow.Images/blob/master/gif/videoTrim2.gif?raw=true" width="400" height="700" alt="videoTrim2"/>
 
-`cordova-plugin-video-trimmer插件部分代码来源 https://github.com/iknow4/Android-Video-Trimmer `
+`cordova-plugin-video-trim插件部分代码来源 https://github.com/iknow4/Android-Video-Trimmer `

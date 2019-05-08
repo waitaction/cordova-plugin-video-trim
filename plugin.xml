@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-video-trimmer" version="1.0.0" 
+<plugin id="cordova-plugin-video-trim" version="1.0.0" 
     xmlns="http://apache.org/cordova/ns/plugins/1.0" 
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>cordova-plugin-video-trimmer</name>
-    <description>Cordova cordova-plugin-video-trimmer Plugin</description>
+    <name>cordova-plugin-video-trim</name>
+    <description>Cordova cordova-plugin-video-trim Plugin</description>
     <author>350561378@qq.com</author>
     <license>Apache License Version 2.0</license>
     <keywords>cordova,video,video trimmer</keywords>
@@ -12,7 +12,7 @@
         <engine name="cordova-android" version=">=8.0.0" />
     </engines>
     <dependency id="cordova-plugin-streaming-media" url="https://github.com/waitaction/cordova-plugin-streaming-media.git" />
-    <js-module name="CordovaTrimmer" src="www/cordova-plugin-video-trimmer.js">
+    <js-module name="CordovaTrimmer" src="www/cordova-plugin-video-trim.js">
         <clobbers target="videoTrimmer" />
     </js-module>
     <platform name="android">
