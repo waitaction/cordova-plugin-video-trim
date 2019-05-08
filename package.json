@@ -13,6 +13,7 @@
     "url": "git+https://github.com/waitaction/cordova-plugin-video-trim.git"
   },
   "keywords": [
+    "cordova-plugin-video-trim",
     "cordova",
     "cordova-android",
     "ecosystem:cordova",
