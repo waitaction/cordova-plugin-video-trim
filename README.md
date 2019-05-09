@@ -1,3 +1,4 @@
+`重构中，该插件暂时不可用`
 
 # cordova-plugin-video-trim
 短视频剪辑cordova插件
