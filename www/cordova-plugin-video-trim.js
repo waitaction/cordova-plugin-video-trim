@@ -48,5 +48,19 @@ Trimmer.prototype.init = function (success, error) {
     exec(success, error, "CordovaTrimmer", "init", []);
 }
 
+Trimmer.prototype.iosTrim = function (success, error, options) {
+    var self = this;
+    var win = function (result) {
+        if (typeof result.progress !== 'undefined') {
+            if (typeof options.progress === 'function') {
+                options.progress(result.progress);
+            }
+        } else {
+            success(result);
+        }
+    };
+    exec(win, error, 'VideoTrim', 'trim', [options]);
+};
+
 module.exports = new Trimmer();
 

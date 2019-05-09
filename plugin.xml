@@ -92,4 +92,38 @@
 
         <!-- <hook type="before_prepare" src="scripts/hook.js" /> -->
     </platform>
+
+        <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="VideoTrim">
+                <param name="ios-package" value="VideoTrim"/>
+            </feature>
+        </config-file>
+        
+        <header-file src="src/ios/VideoTrim.h"/>
+        <source-file src="src/ios/VideoTrim.m"/>
+
+        <header-file src="src/ios/ICGRulerView.h"/>
+        <source-file src="src/ios/ICGRulerView.m"/>
+
+        <header-file src="src/ios/ICGThumbView.h"/>
+        <source-file src="src/ios/ICGThumbView.m"/>
+
+        <header-file src="src/ios/ICGVideoTrimmerView.h"/>
+        <source-file src="src/ios/ICGVideoTrimmerView.m"/>
+
+        <header-file src="src/ios/ICGVideoTrimmer.h"/>
+
+        <header-file src="src/ios/ViewController.h"/>
+        <source-file src="src/ios/ViewController.m"/>
+
+        <resource-file src="src/ios/Trim.storyboard"/>
+
+        <framework src="AssetsLibrary.framework"/>
+        <framework src="AVFoundation.framework"/>
+        <framework src="MediaPlayer.framework"/>
+        <framework src="CoreVideo.framework"/>
+
+    </platform>
 </plugin>
