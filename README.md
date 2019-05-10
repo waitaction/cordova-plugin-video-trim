@@ -14,7 +14,7 @@
 ``` shell
 cordova plugin add cordova-plugin-video-trim
 ```
-
+> 安装需要消耗大约20MB流量
 ## 方法列表
 | 方法                         | 描述                 |
 | ---------------------------- | -------------------- |
