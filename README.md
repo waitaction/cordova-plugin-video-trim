@@ -87,13 +87,13 @@ function error(){
 
 ## Demo
 
-#### 示例项目：`https://github.com/waitaction/cordova-plugin-video-trim-demo`
+## 可以下载 [示例项目](https://github.com/waitaction/cordova-plugin-video-trim-demo)
 
 <img src="https://github.com/iknow4/iknow.Images/blob/master/gif/videoTrim2.gif?raw=true" width="400" height="700" alt="videoTrim2"/>
 
-感谢开源项目`https://github.com/iknow4/Android-Video-Trimmer`提供部分安卓代码
+感谢开源项目 [Android-Video-Trimmer](https://github.com/iknow4/Android-Video-Trimmer) 提供部分安卓源代码
 
-## 推荐
+## 推荐其它开源库
 
-websql-orm `https://github.com/waitaction/websql-orm`
+[websql-orm](https://github.com/waitaction/websql-orm)
 
