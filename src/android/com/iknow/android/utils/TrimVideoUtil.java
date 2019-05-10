@@ -27,7 +27,7 @@ public class TrimVideoUtil {
 
   private static final String TAG = TrimVideoUtil.class.getSimpleName();
   public static final long MIN_SHOOT_DURATION = 3000L;// 最小剪辑时间3s
-  public static final int VIDEO_MAX_TIME = 10;// 10秒
+  public static final int VIDEO_MAX_TIME = 15;// 10秒
   public static final long MAX_SHOOT_DURATION = VIDEO_MAX_TIME * 1000L;//视频最多剪切多长时间10s
   public static final int MAX_COUNT_RANGE = 10;  //seekBar的区域内一共有多少张图片
   public static int RECYCLER_VIEW_PADDING;

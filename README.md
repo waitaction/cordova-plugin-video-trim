@@ -1,4 +1,3 @@
-`重构中，该插件暂时不可用`
 
 # cordova-plugin-video-trim
 短视频剪辑cordova插件
@@ -8,6 +7,7 @@
 | cordova         | ≥ 9.0.0 |
 | cordova-android | ≥8.0.0  |
 
+> 视频剪辑需要在手机设备运行，安卓虚拟机无法剪辑
 
 ## 安装
 
@@ -27,7 +27,7 @@ cordova plugin add cordova-plugin-video-trim
 
 ### 视频剪辑
 
-```javascript
+``` javascript
   videoTrim.trimVideo(videoPath,trimSuccess,trimFail);
   function trimSuccess(result) {
       console.log('trimSuccess, path: ' + result);
@@ -38,7 +38,7 @@ cordova plugin add cordova-plugin-video-trim
 ```
 
 ### 从相册选择视频后剪辑
-```javascript
+``` javascript
   videoTrim.trimSelectedVideo(trimSuccess,trimFail);
   function trimSuccess(filePath) {
       console.log('trimSuccess, path: ' + filePath);
@@ -50,7 +50,7 @@ cordova plugin add cordova-plugin-video-trim
 
 ### 录像后前辑
 
-```javascript
+``` javascript
   videoTrim.trimRecordedVideo(trimSuccess,trimFail);
   function trimSuccess(filePath) {
       console.log('trimSuccess, path: ' + filePath);
@@ -62,17 +62,38 @@ cordova plugin add cordova-plugin-video-trim
 
 ### 获取视频预览图
 
-```javascript
-videoTrim.getVideoPreviewImg({ path:data , outPath:imgPath },
+``` javascript
+ videoTrim.getVideoPreviewImg(videoPath,
     function(url){
         $("body").append("<img src='" + url + "' />");
+    },
+    function(){
+        console.log('error');
     }
 );
 ```
 
+### 播放视频(允许全屏)
+
+``` javascript
+videoTrim.play(videoPath,success,error);
+function success(){
+
+}
+function error(){
+
+}
+```
+
 ## Demo
+
+#### 示例项目：`https://github.com/waitaction/cordova-plugin-video-trim-demo`
 
 <img src="https://github.com/iknow4/iknow.Images/blob/master/gif/videoTrim2.gif?raw=true" width="400" height="700" alt="videoTrim2"/>
 
-`cordova-plugin-video-trim插件部分代码来自 https://github.com/iknow4/Android-Video-Trimmer `
+感谢开源项目`https://github.com/iknow4/Android-Video-Trimmer`提供部分安卓代码
+
+## 推荐
+
+websql-orm `https://github.com/waitaction/websql-orm`
 

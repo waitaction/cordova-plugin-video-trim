@@ -66,9 +66,10 @@ Trimmer.prototype.play = function (videoPath, success, error) {
 /**
  * 获取视频预览图
  */
-Trimmer.prototype.getVideoPreviewImg = function (opt, success, error) {
+Trimmer.prototype.getVideoPreviewImg = function (videoPath, success, error) {
     this.init(function () {
-        exec(success, error, "CordovaTrimmer", "trimVideoImage", [opt]);
+        var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".jpg"; // 输出路径
+        exec(success, error, "CordovaTrimmer", "trimVideoImage", [{ path: videoPath, outPath: outPath }]);
     }, function (error) {
         error(error)
     });
@@ -99,7 +100,21 @@ Trimmer.prototype.trimVideoImage = function (opt, success, error) {
 }
 
 Trimmer.prototype.init = function (success, error) {
-    exec(success, error, "CordovaTrimmer", "init", []);
+    var permissions = cordova.plugins.permissions;
+    permissions.hasPermission(permissions.CAMERA, function (status) {
+        if (!status.hasPermission) {
+            permissions.requestPermissions(
+                [permissions.READ_EXTERNAL_STORAGE, permissions.WRITE_EXTERNAL_STORAGE],
+                function () {
+                    exec(success, error, "CordovaTrimmer", "init", []);
+                }, function () {
+                    console.warn('Camera permission is not turned on');
+                    exec(success, error, "CordovaTrimmer", "init", []);
+                });
+        } else {
+            exec(success, error, "CordovaTrimmer", "init", []);
+        }
+    });
 }
 
 Trimmer.prototype.iosTrim = function (success, error, options) {

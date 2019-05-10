@@ -1,7 +1,7 @@
 <resources>
-    <string name="trimmed_done">视频裁剪完成！</string>
-    <string name="trimming">正在裁剪视频...</string>
-    <string name="compressing">正在压缩视频...</string>
-    <string name="compressed_done">视频压缩完成！</string>
-    <string name="video_shoot_tip">拖动选择你要裁剪的%d秒以内片段！</string>
+    <string name="trimmed_done">视频剪辑完成</string>
+    <string name="trimming">正在剪辑视频，这可能需要一两分钟的时间...</string>
+    <string name="compressing">正在压缩视频，这可能需要一两分钟的时间...</string>
+    <string name="compressed_done">视频压缩完成</string>
+    <string name="video_shoot_tip">拖动选择你要剪辑的%d秒以内片段</string>
 </resources>

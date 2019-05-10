@@ -11,7 +11,12 @@
     <engines>
         <engine name="cordova-android" version=">=8.0.0" />
     </engines>
-    <dependency id="cordova-plugin-streaming-media" url="https://github.com/waitaction/cordova-plugin-streaming-media.git" />
+
+    <dependency id="cordova-plugin-file" />
+    <dependency id="cordova-plugin-streaming-media" />
+    <dependency id="cordova-plugin-media-capture" />
+    <dependency id="cordova-plugin-android-permissions" />
+
     <js-module name="CordovaTrimmer" src="www/cordova-plugin-video-trim.js">
         <clobbers target="videoTrim" />
     </js-module>
@@ -93,14 +98,14 @@
         <!-- <hook type="before_prepare" src="scripts/hook.js" /> -->
     </platform>
 
-        <!-- ios -->
+    <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
             <feature name="VideoTrim">
                 <param name="ios-package" value="VideoTrim"/>
             </feature>
         </config-file>
-        
+
         <header-file src="src/ios/VideoTrim.h"/>
         <source-file src="src/ios/VideoTrim.m"/>
 
