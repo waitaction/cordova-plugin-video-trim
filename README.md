@@ -87,7 +87,7 @@ function error(){
 
 ## Demo
 
-## 可以下载 [示例项目](https://github.com/waitaction/cordova-plugin-video-trim-demo)
+### 可以下载 [示例项目](https://github.com/waitaction/cordova-plugin-video-trim-demo)
 
 <img src="https://github.com/iknow4/iknow.Images/blob/master/gif/videoTrim2.gif?raw=true" width="400" height="700" alt="videoTrim2"/>
 
