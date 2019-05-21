@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-video-trim",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "视频剪辑功能的Cordova插件",
   "cordova": {
     "id": "cordova-plugin-video-trim"
