@@ -13,9 +13,11 @@
     </engines>
 
     <dependency id="cordova-plugin-file" />
+    <dependency id="cordova-plugin-camera" />
     <dependency id="cordova-plugin-streaming-media" />
     <dependency id="cordova-plugin-media-capture" />
     <dependency id="cordova-plugin-android-permissions" />
+    <dependency id="cordova-plugin-device" />
 
     <js-module name="CordovaTrimmer" src="www/cordova-plugin-video-trim.js">
         <clobbers target="videoTrim" />
@@ -129,6 +131,18 @@
         <framework src="AVFoundation.framework"/>
         <framework src="MediaPlayer.framework"/>
         <framework src="CoreVideo.framework"/>
-
+        
+        <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+            <string>need camera access to take pictures</string>
+        </edit-config>
+        <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
+            <string>need photo library access to get pictures from there</string>
+        </edit-config>
+        <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+            <string>need location access to find things nearby</string>
+        </edit-config>
+        <edit-config target="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
+            <string>need photo library access to save pictures there</string>
+        </edit-config>
     </platform>
 </plugin>

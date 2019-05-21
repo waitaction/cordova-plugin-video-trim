@@ -7,13 +7,33 @@ var Trimmer = function () { }
  * 输入视频路径，成功输出剪辑后的视频路径
  */
 Trimmer.prototype.trimVideo = function (videoPath, success, error) {
-    var that = this;
-    this.init(function () {
-        var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".mp4"; // 输出路径
-        that.openTrimmerPage({ path: videoPath, outPath: outPath }, success, error);
-    }, function (error) {
-        error(error)
-    });
+    var that = this; var platform = device.platform;
+    if (platform.toLowerCase() == "android") {
+        this.init(function () {
+            var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".mp4"; // 输出路径
+            that.openTrimmerPage({ path: videoPath, outPath: outPath }, success, error);
+        }, function (error) {
+            error(error)
+        });
+    }
+    if (platform.toLowerCase() == "ios") {
+        var nativeUrl = videoPath;
+        that.iosTrim(
+            function (result) {
+                success && success(result);
+            },
+            function (err) {
+                error && error(err);
+            },
+            {
+                path: nativeUrl, // path to input video,
+                limit: 20, // max limit, only for android
+                fileUri: nativeUrl, // for ios
+                duration: 15 //for ios
+            }
+        );
+
+    }
 }
 
 /**
@@ -21,12 +41,43 @@ Trimmer.prototype.trimVideo = function (videoPath, success, error) {
  */
 Trimmer.prototype.trimSelectedVideo = function (success, error) {
     var that = this;
-    this.init(function () {
-        var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".mp4"; // 输出路径
-        that.openSelectVideoPage({ outPath: outPath }, success, error);
-    }, function (error) {
-        error(error)
-    });
+    var platform = device.platform;
+    if (platform.toLowerCase() == "android") {
+        this.init(function () {
+            var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".mp4"; // 输出路径
+            that.openSelectVideoPage({ outPath: outPath }, success, error);
+        }, function (error) {
+            error(error)
+        });
+    }
+    if (platform.toLowerCase() == "ios") {
+        //先打开选择视频的页面 cordova-plugin-trim
+        navigator.camera.getPicture(function (nativeUrl) {
+            that.iosTrim(
+                function (result) {
+                    success && success(result);
+                },
+                function (err) {
+                    error && error(err);
+                },
+                {
+                    path: nativeUrl, // path to input video,
+                    limit: 20, // max limit, only for android
+                    fileUri: nativeUrl, // for ios
+                    duration: 15 //for ios
+                }
+            );
+        }, function (error) {
+            console.error(error);
+        }, {
+                allowEdit: true,
+                destinationType: Camera.DestinationType.NATIVE_URI,
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                mediaType: Camera.MediaType.VIDEO,
+                popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY)
+            });
+    }
+
 }
 
 /**
@@ -34,12 +85,37 @@ Trimmer.prototype.trimSelectedVideo = function (success, error) {
  */
 Trimmer.prototype.trimRecordedVideo = function (success, error) {
     var that = this;
-    this.init(function () {
-        var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".mp4"; // 输出路径
-        that.openRecordVideoPage({ outPath: outPath }, success, error);
-    }, function (error) {
-        error(error)
-    });
+    var platform = device.platform;
+    if (platform.toLowerCase() == "android") {
+        this.init(function () {
+            var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".mp4"; // 输出路径
+            that.openRecordVideoPage({ outPath: outPath }, success, error);
+        }, function (error) {
+            error(error)
+        });
+    }
+    if (platform.toLowerCase() == "ios") {
+        navigator.device.capture.captureVideo(function (mediaFiles) {
+            var nativeUrl = mediaFiles[0].fullPath;
+            that.iosTrim(
+                function (result) {
+                    success && success(result);
+                },
+                function (err) {
+                    error && error(err);
+                },
+                {
+                    path: nativeUrl, // path to input video,
+                    limit: 20, // max limit, only for android
+                    fileUri: nativeUrl, // for ios
+                    duration: 15 //for ios
+                }
+            );
+        }, function (err) {
+            error(err);
+        }, { limit: 1, duration: 20 })
+
+    }
 }
 
 /**
@@ -67,12 +143,18 @@ Trimmer.prototype.play = function (videoPath, success, error) {
  * 获取视频预览图
  */
 Trimmer.prototype.getVideoPreviewImg = function (videoPath, success, error) {
-    this.init(function () {
-        var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".jpg"; // 输出路径
-        exec(success, error, "CordovaTrimmer", "trimVideoImage", [{ path: videoPath, outPath: outPath }]);
-    }, function (error) {
-        error(error)
-    });
+    var platform = device.platform;
+    if (platform.toLowerCase() == "android") {
+        this.init(function () {
+            var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".jpg"; // 输出路径
+            exec(success, error, "CordovaTrimmer", "trimVideoImage", [{ path: videoPath, outPath: outPath }]);
+        }, function (error) {
+            error(error)
+        });
+    } else {
+        alert("获取视频预览图暂时不支持ios，在ios平台不要调用此方法getVideoPreviewImg");
+    }
+
 }
 
 
