@@ -4,8 +4,7 @@ var cameraPath = "platforms/ios/" + getName() + "/Plugins/cordova-plugin-camera/
 
 function iOSTrim() {
     var data = fs.readFileSync(cameraPath, 'utf8');
-    var content = data.match(/pictureOptions\.allowsEditing;/ig)[0]
-    content = content.replace(/pictureOptions\.allowsEditing;/ig,
+    content = data.replace(/pictureOptions\.allowsEditing;/ig,
         `pictureOptions.allowsEditing;\r` +
         `cameraPicker.videoMaximumDuration = 0.25 * 60.0f;//cordova-plugin-video-trim`);
     fs.writeFileSync(cameraPath, content, 'utf8');
