@@ -8,9 +8,24 @@ function iOSTrim() {
     if (data.indexOf(`cameraPicker.videoMaximumDuration`) > 0) {
         return;
     }
-    content = data.replace(/pictureOptions\.allowsEditing;/ig,
+    content = data.replace("pictureOptions.allowsEditing;",
         `pictureOptions.allowsEditing;\r` +
         `cameraPicker.videoMaximumDuration = 0.25 * 60.0f;//cordova-plugin-video-trim`);
+
+    content = content.replace(
+`    NSString* moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] absoluteString];
+    return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:moviePath];`,
+        `   NSString* moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+    NSArray* spliteArray = [moviePath componentsSeparatedByString: @"/"];
+    NSString* lastString = [spliteArray lastObject];
+    NSError *error;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:lastString];
+    [fileManager copyItemAtPath:moviePath toPath:filePath error:&error];
+    return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:filePath];
+`);
+
     fs.writeFileSync(cameraPath, content, 'utf8');
 }
 

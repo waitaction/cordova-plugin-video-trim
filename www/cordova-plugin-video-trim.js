@@ -37,7 +37,31 @@ Trimmer.prototype.trimSelectedVideo = function (success, error) {
     }
     if (device.platform.toLowerCase() == "ios") {
         navigator.camera.getPicture(function (nativeUrl) {
-            success(nativeUrl);
+            var fileUrl = "file://" + nativeUrl;
+            //复制文件
+            window.resolveLocalFileSystemURL(fileUrl, function (entry) {
+                window.resolveLocalFileSystemURL(window.cordova.file.dataDirectory, function (dirEntry) {
+                    entry.copyTo(dirEntry, (new Date()).getTime() + ".mp4",
+                        function (tEntry) {
+                            if (tEntry.nativeURL.indexOf("file://") == 0) {
+                                success(tEntry.nativeURL);
+                            } else {
+                                success("file://" + tEntry.nativeURL);
+                            }
+                        }, function (tError) {
+                            console.error(tError);
+                            error(tError)
+                        });
+                }, function (error) {
+                    console.error(error);
+                    error(error)
+                });
+
+            }, function (error) {
+                console.error(error);
+                error(error)
+            })
+
         }, function (error) {
             console.error(error);
             error(error)
@@ -67,7 +91,30 @@ Trimmer.prototype.trimRecordedVideo = function (success, error) {
     }
     if (device.platform.toLowerCase() == "ios") {
         navigator.device.capture.captureVideo(function (mediaFiles) {
-            success("file://" + mediaFiles[0].fullPath);
+            var fileUrl = "file://" + mediaFiles[0].fullPath;
+            //复制文件
+            window.resolveLocalFileSystemURL(fileUrl, function (entry) {
+                window.resolveLocalFileSystemURL(window.cordova.file.dataDirectory, function (dirEntry) {
+                    entry.copyTo(dirEntry, (new Date()).getTime() + ".mp4",
+                        function (tEntry) {
+                            if (tEntry.nativeURL.indexOf("file://") == 0) {
+                                success(tEntry.nativeURL);
+                            } else {
+                                success("file://" + tEntry.nativeURL);
+                            }
+                        }, function (tError) {
+                            console.error(tError);
+                            error(tError)
+                        });
+                }, function (error) {
+                    console.error(error);
+                    error(error)
+                });
+
+            }, function (error) {
+                console.error(error);
+                error(error)
+            })
         }, function (err) {
             error(err);
         }, { limit: 1, duration: 15 })
