@@ -4,11 +4,10 @@ var Trimmer = function () { }
 
 /**
  * 视频剪辑
- * 输入视频路径，成功输出剪辑后的视频路径
  */
 Trimmer.prototype.trimVideo = function (videoPath, success, error) {
-    var that = this; var platform = device.platform;
-    if (platform.toLowerCase() == "android") {
+    var that = this;
+    if (device.platform.toLowerCase() == "android") {
         this.init(function () {
             var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".mp4"; // 输出路径
             that.openTrimmerPage({ path: videoPath, outPath: outPath }, success, error);
@@ -16,23 +15,10 @@ Trimmer.prototype.trimVideo = function (videoPath, success, error) {
             error(error)
         });
     }
-    if (platform.toLowerCase() == "ios") {
-        var nativeUrl = videoPath;
-        that.iosTrim(
-            function (result) {
-                success && success(result);
-            },
-            function (err) {
-                error && error(err);
-            },
-            {
-                path: nativeUrl, // path to input video,
-                limit: 20, // max limit, only for android
-                fileUri: nativeUrl, // for ios
-                duration: 15 //for ios
-            }
-        );
-
+    if (device.platform.toLowerCase() == "ios") {
+        //ios不支持
+        alert("trimVideo方法ios不支持");
+        success(videoPath)
     }
 }
 
@@ -41,8 +27,7 @@ Trimmer.prototype.trimVideo = function (videoPath, success, error) {
  */
 Trimmer.prototype.trimSelectedVideo = function (success, error) {
     var that = this;
-    var platform = device.platform;
-    if (platform.toLowerCase() == "android") {
+    if (device.platform.toLowerCase() == "android") {
         this.init(function () {
             var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".mp4"; // 输出路径
             that.openSelectVideoPage({ outPath: outPath }, success, error);
@@ -50,32 +35,19 @@ Trimmer.prototype.trimSelectedVideo = function (success, error) {
             error(error)
         });
     }
-    if (platform.toLowerCase() == "ios") {
-        //先打开选择视频的页面 cordova-plugin-trim
+    if (device.platform.toLowerCase() == "ios") {
         navigator.camera.getPicture(function (nativeUrl) {
-            that.iosTrim(
-                function (result) {
-                    success && success(result);
-                },
-                function (err) {
-                    error && error(err);
-                },
-                {
-                    path: nativeUrl, // path to input video,
-                    limit: 20, // max limit, only for android
-                    fileUri: nativeUrl, // for ios
-                    duration: 15 //for ios
-                }
-            );
+            success(nativeUrl);
         }, function (error) {
             console.error(error);
+            error(error)
         }, {
-                allowEdit: true,
-                destinationType: Camera.DestinationType.NATIVE_URI,
-                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                mediaType: Camera.MediaType.VIDEO,
-                popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY)
-            });
+            allowEdit: true,
+            destinationType: Camera.DestinationType.NATIVE_URI,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            mediaType: Camera.MediaType.VIDEO,
+            popoverOptions: new CameraPopoverOptions(0, 32, 320, 480, Camera.PopoverArrowDirection.ARROW_ANY)
+        });
     }
 
 }
@@ -85,8 +57,7 @@ Trimmer.prototype.trimSelectedVideo = function (success, error) {
  */
 Trimmer.prototype.trimRecordedVideo = function (success, error) {
     var that = this;
-    var platform = device.platform;
-    if (platform.toLowerCase() == "android") {
+    if (device.platform.toLowerCase() == "android") {
         this.init(function () {
             var outPath = window.cordova.file.dataDirectory + (new Date()).getTime() + ".mp4"; // 输出路径
             that.openRecordVideoPage({ outPath: outPath }, success, error);
@@ -94,27 +65,12 @@ Trimmer.prototype.trimRecordedVideo = function (success, error) {
             error(error)
         });
     }
-    if (platform.toLowerCase() == "ios") {
+    if (device.platform.toLowerCase() == "ios") {
         navigator.device.capture.captureVideo(function (mediaFiles) {
-            var nativeUrl = mediaFiles[0].fullPath;
-            that.iosTrim(
-                function (result) {
-                    success && success(result);
-                },
-                function (err) {
-                    error && error(err);
-                },
-                {
-                    path: nativeUrl, // path to input video,
-                    limit: 20, // max limit, only for android
-                    fileUri: nativeUrl, // for ios
-                    duration: 15 //for ios
-                }
-            );
+            success(mediaFiles[0].fullPath);
         }, function (err) {
             error(err);
-        }, { limit: 1, duration: 20 })
-
+        }, { limit: 1, duration: 15 })
     }
 }
 
@@ -122,7 +78,6 @@ Trimmer.prototype.trimRecordedVideo = function (success, error) {
  * 播放视频(允许全屏)
  * */
 Trimmer.prototype.play = function (videoPath, success, error) {
-    // Play a video with callbacks
     var options = {
         successCallback: function () {
             console.log("Video was closed without error.");
@@ -199,19 +154,7 @@ Trimmer.prototype.init = function (success, error) {
     });
 }
 
-Trimmer.prototype.iosTrim = function (success, error, options) {
-    var self = this;
-    var win = function (result) {
-        if (typeof result.progress !== 'undefined') {
-            if (typeof options.progress === 'function') {
-                options.progress(result.progress);
-            }
-        } else {
-            success(result);
-        }
-    };
-    exec(win, error, 'VideoTrim', 'trim', [options]);
-};
+
 
 module.exports = new Trimmer();
 
