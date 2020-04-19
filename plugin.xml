@@ -15,7 +15,7 @@
     <dependency id="cordova-plugin-file" />
     <dependency id="cordova-plugin-camera" />
     <dependency id="cordova-plugin-streaming-media" />
-    <dependency id="cordova-plugin-media-capture" />
+    <dependency id="cordova-plugin-media-capture" version="3.0.3" />
     <dependency id="cordova-plugin-android-permissions" />
     <dependency id="cordova-plugin-device" />
 
@@ -121,6 +121,6 @@
             <string>need photo library access to save pictures there</string>
         </edit-config>
 
-        <hook type="before_prepare" src="hook/ios/before_prepare.js" />
+        <hook type="after_build" src="hook/ios/after_build.js" />
     </platform>
 </plugin>
