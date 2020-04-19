@@ -37,7 +37,7 @@ Trimmer.prototype.trimSelectedVideo = function (success, error) {
     }
     if (device.platform.toLowerCase() == "ios") {
         navigator.camera.getPicture(function (nativeUrl) {
-            success(nativeUrl);
+            success("file://" + nativeUrl);
         }, function (error) {
             console.error(error);
             error(error)
