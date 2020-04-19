@@ -67,7 +67,7 @@ Trimmer.prototype.trimRecordedVideo = function (success, error) {
     }
     if (device.platform.toLowerCase() == "ios") {
         navigator.device.capture.captureVideo(function (mediaFiles) {
-            success(mediaFiles[0].fullPath);
+            success("file://" + mediaFiles[0].fullPath);
         }, function (err) {
             error(err);
         }, { limit: 1, duration: 15 })
