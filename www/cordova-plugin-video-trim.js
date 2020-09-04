@@ -177,7 +177,7 @@ Trimmer.prototype.openRecordVideoPage = function (opt, success, error) {
         exec(success, error, "CordovaTrimmer", "openTrimmerPage", [{ path: mediaFiles[0].fullPath, outPath: opt.outPath }]);
     }, function (err) {
         error(err);
-    }, { limit: 1, duration: 20 });
+    }, { limit: 1, duration: 60 });
 }
 
 Trimmer.prototype.trimVideoImage = function (opt, success, error) {
